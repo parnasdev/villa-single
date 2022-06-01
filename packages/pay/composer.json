@@ -1,0 +1,29 @@
+{
+    "name": "parnas/pay",
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "internet pay",
+    "require": {
+        "php": "^8.0",
+        "shetabit/payment": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Parnas\\Pay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "parnas agency",
+            "email": "info@parnas.agency"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Parnas\\Pay\\Provider\\PayServiceProvider"
+            ],
+            "aliases": {}
+        }
+    }
+}

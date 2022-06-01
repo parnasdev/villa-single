@@ -1,0 +1,11 @@
+[
+    {
+        "packageName": "villa",
+        "service" : "Packages\\Villa\\src\\Provider\\VilaServiceProvider",
+        "disabled": false
+    },{
+        "packageName": "pay",
+        "service" : "Packages\\pay\\src\\Provider\\PayServiceProvider",
+        "disabled": false
+    }
+]

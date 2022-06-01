@@ -1,0 +1,27 @@
+{
+    "name": "parnas/order",
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "order product",
+    "autoload": {
+        "psr-4": {
+            "php": "^8.0",
+            "Parnas\\Order\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "parnas agency",
+            "email": "info@parnas.agency"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Parnas\\Order\\Provider\\OrderServiceProvider"
+            ],
+            "aliases": {}
+        }
+    }
+}

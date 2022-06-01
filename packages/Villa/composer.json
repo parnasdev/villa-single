@@ -1,0 +1,20 @@
+{
+    "name": "prs/villa",
+    "description": "villa system",
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "src/helper.php"
+        ],
+        "psr-4": {
+            "Prs\\Villa\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "parnasweb",
+            "email": "info@parnas.agency"
+        }
+    ],
+    "require": {}
+}
