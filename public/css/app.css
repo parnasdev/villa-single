@@ -4997,7 +4997,7 @@ body {
   direction: rtl;
   padding: 0;
   margin: 0;
-  background-color: #fff !important;
+  background-color: #F6F7FB !important;
   overflow-x: hidden;
 }
 
@@ -9246,6 +9246,26 @@ form .inputs input {
   font-size: 14px;
 }
 
+.f-15 {
+  font-size: 15px;
+}
+
+.f-17 {
+  font-size: 17px;
+}
+
+.f-20 {
+  font-size: 20px;
+}
+
+.f-21 {
+  font-size: 21px;
+}
+
+.f-22 {
+  font-size: 22px;
+}
+
 .f-27 {
   font-size: 27px;
 }
@@ -9266,8 +9286,16 @@ form .inputs input {
   background-color: #F37638;
 }
 
+.bg-success-save {
+  background-color: #347557;
+}
+
 .f-bold {
   font-weight: bold;
+}
+
+.text-ad {
+  color: #ADADAD;
 }
 
 button {
@@ -9407,6 +9435,56 @@ button {
   height: 300px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.section-content .box-data {
+  background-color: #fff;
+  border-radius: 10px;
+}
+.section-content .box-data .line-horizontal {
+  width: 100%;
+  height: 1.5px;
+  background-color: #CBCBCB;
+  margin: 20px 0;
+}
+.section-content .card-headerdata {
+  padding: 20px 0;
+}
+.section-content .-data .r-data,
+.section-content .-data .l-data {
+  margin-top: 13px;
+}
+.section-content .-data .r-data {
+  flex: 0 0 75% !important;
+  max-width: 75% !important;
+}
+.section-content .-data .l-data {
+  flex: 0 0 24% !important;
+  max-width: 24% !important;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10px;
+}
+.section-content .main-select .p-select,
+.section-content .main-select .p-input {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.section-content .main-select .p-select .c-select,
+.section-content .main-select .p-input .c-select {
+  flex: 0 0 49%;
+  max-width: 49%;
+}
+.section-content .main-select .p-select .c-input,
+.section-content .main-select .p-input .c-input {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.section-content .main-select .p-select .c-input input,
+.section-content .main-select .p-input .c-input input {
+  height: 35px;
+}
+.section-content .btn-data button {
+  border-radius: 10px;
 }
 
 .backface-drop {
