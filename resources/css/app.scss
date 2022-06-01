@@ -2120,6 +2120,7 @@ input {
 .date-disabled {
     background-color: #f2f2f2;
 }
+
 .date-reserved {
     background-color: #f4f4f4;
     cursor: no-drop;
@@ -2152,12 +2153,12 @@ input {
     font-size: 9px;
     font-weight: 500;
 }
+
 .selected-day-list {
-    padding: 0  10px!important;
+    padding: 0 10px!important;
     display: flex!important;
     align-items: center!important;
     justify-content: space-between!important;
-    
 }
 
 //end calender css
@@ -2554,6 +2555,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-radius: 15px;
     .menu-parent {
         display: flex;
         align-items: center;
@@ -3326,11 +3328,13 @@ form .inputs input {
         width: 48%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         .logo {
-            width: 40%;
+            // width: 40%;
+            padding-left: 30px;
             img {
-                width: 50%;
+                width: 100px;
+                height: auto;
             }
         }
         .menu-header-index {
@@ -3812,7 +3816,6 @@ form .inputs input {
     margin-top: 1.5rem !important;
 }
 
-
 .local-date {
     width: 750px;
 }
@@ -3892,6 +3895,34 @@ form .inputs input {
     font-size: 14px;
 }
 
+.f-27 {
+    font-size: 27px;
+}
+
+.f-28 {
+    font-size: 28px;
+}
+
+.f-29 {
+    font-size: 29px;
+}
+
+.color-custom-base {
+    color: #347557;
+}
+
+.bg-custom-base {
+    background-color: #F37638;
+}
+
+.f-bold {
+    font-weight: bold;
+}
+
+button {
+    border: none;
+}
+
 .controller-data {
     .month {
         flex: 0 0 100%;
@@ -3963,6 +3994,92 @@ form .inputs input {
     margin: 10px 0;
 }
 
+.section-content {
+    .p-header {
+        background-color: #E2EAEF;
+        height: 100vh;
+        .image {
+            img {
+                position: absolute;
+                z-index: 20;
+                width: 70%;
+                height: 550px;
+                bottom: 15px;
+                object-fit: contain;
+            }
+        }
+        .title-head {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            top: 167px;
+            .btn-data {
+                margin-top: 10px;
+                button {
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+    .p-gallery {
+        padding: 90px 0;
+        .gallery-image {
+            .l-gallery {
+                flex: 0 0 49%;
+                max-width: 49%;
+                width: 100%;
+                height: 300px;
+                .image {
+                    img {
+                        width: 100%;
+                        height: 620px;
+                        object-fit: cover;
+                        border-radius: 0 0 100px 0;
+                    }
+                }
+            }
+            .r-gallery {
+                flex: 0 0 49%;
+                max-width: 49%;
+                .image {
+                    &:nth-child(1) {
+                        flex: 0 0 100%;
+                        max-width: 100%;
+                        margin-bottom: 20px;
+                        img {
+                            border-radius: 100px 0 0 0;
+                        }
+                    }
+                }
+                .image {
+                    flex: 0 0 48%;
+                    max-width: 48%;
+                    &:nth-child(3) {
+                        img {
+                            border-radius: 0 0 0 100px;
+                        }
+                    }
+                    img {
+                        width: 100%;
+                        height: 300px;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.backface-drop {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    img {
+        width: 100%;
+    }
+}
+
 @keyframes scale_loop {
     0% {
         transform: scale(1);
@@ -3976,7 +4093,8 @@ form .inputs input {
 }
 
 @media (max-width: 500px) {
-    .local-date , .p-date {
+    .local-date,
+    .p-date {
         width: 100%;
     }
 }

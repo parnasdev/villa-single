@@ -2,7 +2,7 @@
     <div class="prs-responsive">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12   parent-header-villa m-auto-x">
+                <div class="col-md-12  parent-header-villa bg-white m-auto-x">
                     <div class="right-header-index">
                         <a href="/" class="logo">
                             <img src="/images/logo.png" alt="">
@@ -142,7 +142,7 @@
                             میزبان شوید
                         </a>
                         @endif
-                     
+
                     </div>
                 </div>
             </div>
