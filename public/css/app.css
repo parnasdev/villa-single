@@ -9524,7 +9524,7 @@ button {
 }
 @media (max-width: 1280px) {
   .section-content .p-header .image img {
-    width: 50% !important;
+    width: 60% !important;
     bottom: -65px !important;
   }
 }
