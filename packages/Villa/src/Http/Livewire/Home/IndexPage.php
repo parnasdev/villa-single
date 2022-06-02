@@ -283,7 +283,7 @@ class IndexPage extends Component
         if (auth()->user()) {
             $this->step = 2;
         } else {
-            return redirect(route('login', ['referrer-url' => url('/info/' . $this->residence->id)]));
+            return redirect(route('login', ['referrer-url' => url('/')]));
         }
     }
 
