@@ -33,7 +33,7 @@
     <div class="container">
         <div class="p-gallery">
             <div class="title pb-4">
-                <h3>رزرو شماره 1 آبعلی</h3>
+                <h3>ر{{ $residence->title }}</h3>
             </div>
             <div class="gallery-image d-flex justify-content-between align-items-start">
                 <div class="l-gallery">
@@ -106,6 +106,8 @@
                     </div>
                     <div class="line-horizontal"></div>
                     <div class="text-data d-flex  flex-wrap align-items-center justify-contnet-start px-3">
+                        @foreach ($residence->specifications['facilities'] as $faci)
+
                         <div class="c-data col-xl-2 col-lg-2 me-4 mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="31.567" height="31.18" viewBox="0 0 31.567 31.18">
                                 <g id="Modem" transform="translate(0.075 1)">
@@ -115,8 +117,9 @@
                                   <path id="Path_1045" data-name="Path 1045" d="M6.312,17a1.312,1.312,0,0,0,0,2.624H7.624a1.312,1.312,0,0,0,0-2.624Zm5.249,0a1.312,1.312,0,1,0,0,2.624h10.5a1.312,1.312,0,0,0,0-2.624Z" transform="translate(1.561 3.995)" fill="#347557" fill-rule="evenodd"/>
                                 </g>
                               </svg>
-                              <span class="f-15 ps-2">وای فای رایگان</span>
+                              <span class="f-15 ps-2">{{ collect(config('vila.facilities'))->firstWhere('id', $faci ?? 0)['title'] ?? 'ندارد'  }}</span>
                         </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="box-data px-3 py-4 mb-4">
@@ -132,7 +135,8 @@
                     <div class="line-horizontal"></div>
                     <div class="paragraph px-3">
                         <p class="f-14">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                            {{ $residence->rules['text'] ?? '' }}
+
                         </p>
                     </div>
                 </div>
@@ -154,15 +158,242 @@
                     </div>
                 </div>
             </div>
-            <div class="l-data box-data px-2 py-2">
+            <div class="l-data box-data px-2 py-2" x-data="{
+                calenders: @entangle('calenderData'),
+                month: @entangle('currentMonth'),
+                year: @entangle('currentYear'),
+                dayIn: null,
+                step: @entangle('step'),
+                dayOut: null,
+                isLoading: false,
+                reserves: [],
+                datesSelected: @entangle('datesSelected'),
+                init() {
+                    this.getCa()
+                    this.getReserves();
+                  
+                },
+                nextStep() {
+                    if (this.datesSelected.length > 0) {
+                        this.step = 2;
+                    } else {
+                        alert('لطفا ابتدا روزهای خود را انتخاب کنید');
+                    }
+                },
+                previoesStep() {
+                    this.step = 1
+                },
+                getBetweenDatesSelected() {
+                    $wire.getDates(this.dayIn, this.dayOut).then(result => {
+                        this.datesSelected = JSON.parse(result);
+                        this.checkReservedInDates();
+                    });
+                },
+                checkReservedInDates() {
+                    if (this.dayOut < this.dayIn) {
+                        alert('تاریخ انتخابی نامعتبر است.');
+                        this.dayIn = null;
+                        this.dayOut = null;
+                    } else {
+                        for (let i = 0; i <= this.datesSelected.length; i++) {
+                            if (this.checkIsReserve(this.datesSelected[i])) {
+                                this.dayOut = this.datesSelected[i];
+                                alert('بین روزهای انتخابی شما روز غیرقابل رزرو وجود دارد.')
+                                break;
+                            }
+                        }
+                        $wire.getDates(this.dayIn, this.dayOut).then(result => {
+                            
+                            this.datesSelected = JSON.parse(result);
+                        });
+                    }
+                },
+                getReserves() {
+                    $wire.getAllReservations().then(result => {
+                        this.reserves = result;
+                    })
+                },
+                getCa() {
+                    this.isLoading = true;
+                    $wire.getCalender($wire.calendarRequest).then(result => {
+                        
+                        this.calenders = JSON.parse(result);
+                        console.log(this.calenders)
+                        this.month = this.calenders.month;
+                        this.year = this.calenders.year;
+                        this.isLoading = false;
+                    })
+                },
+                checkIsReserve(date) {
+                    return this.reserves.includes(date);
+                },
+                itemClicked(data) {
+                    $wire.itemClicked(JSON.stringify(data))
+                },
+                nextMonth() {
+                    $wire.nextMonth().then(result => this.getCa())
+                },
+                previousMonth() {
+                    $wire.previousMonth().then(result => this.getCa())
+                },
+                onItemClicked(dateItem = null) {
+                    if (dateItem) {
+                        this.datesSelected = [];
+                        if (!this.dayIn && !this.dayOut) {
+                            if (this.checkIsReserve(dateItem)) {
+                                alert('این تاریخ رزرو شده است');
+                            } else {
+                                this.dayIn = dateItem
+                            }
+                        } else if (this.dayIn && !this.dayOut) {
+                            if (dateItem == this.dayIn) {
+                                this.dayIn = null;
+                                this.dayOut = null;
+                            } else {
+                                this.dayOut = dateItem;
+                                this.getBetweenDatesSelected();
+                            }
+                        } else {
+                            if (this.checkIsReserve(dateItem)) {
+                                alert('این تاریخ رزرو شده است');
+                                this.dayIn = null;
+                                this.dayOut = null;
+                            } else {
+                                this.dayIn = dateItem;
+                                this.dayOut = null;
+                            }
+                        }
+                    } else {
+                        alert('امکان رزرو در این تاریخ وجود ندارد.');
+                    }
+                },
+                getDates(e) {
+                    this.calenders = JSON.parse(e.detail);
+                },
+                isItemExistToSelected(item) {
+                    return this.datesSelected.filter(x => x === item.dateEn)
+                },
+                findListItemIndex(item) {
+                    return this.calenders.dates.findIndex(x => x.dateEn === item.dateEn);
+                },
+                getIsDaysGone(dateItem) {
+                    return dateItem.status === 'Disabled' || dateItem.status === 'Hidden'
+                }
+            }" @send-data.window="getDates">
                 <div class="box-data">
-                    <div class="title d-flex justify-content-center align-items-center pt-2">
+                    <div class="title  pt-2">
                         <span class="f-15 f-bold">رزرو اقامتگاه</span>
+                        <div class="calenders" x-show="step === 1">
+                            <section>
+                                <div class="calender">
+                                    <div class="loading" x-show="isLoading">
+                                        <div>
+                                            <div class="spinner-loading"></div>
+                                            <h2 class="h2">صبرکنید ...</h2>
+                                        </div>
+                                    </div>
+                                    <div class="header-calender">
+                                        <div class="month-prev" @click="previousMonth()">
+                                            <svg id="Outline" viewBox="0 0 24 24" width="22" height="22">
+                                                <path
+                                                    d="M7,24a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42l8.17-8.17a3,3,0,0,0,0-4.24L6.29,1.71A1,1,0,0,1,7.71.29l8.17,8.17a5,5,0,0,1,0,7.08L7.71,23.71A1,1,0,0,1,7,24Z" />
+                                            </svg>
+                                            <span class="text-month-prev">ماه قبل</span>
+                                        </div>
+                                        <div class="date-header">
+                                            <strong>{{ $months->firstWhere('id', $currentMonth ?? 1)['text'] }}</strong>
+                                            <strong class="years"> {{ $currentYear }}</strong>
+                                        </div>
+                                        <div class="month-next" @click="nextMonth()">
+                                            <a class="text-month-next">ماه بعد</a>
+                                            <svg id="Outline" viewBox="0 0 24 24" width="22" height="22">
+                                                <path
+                                                    d="M7,24a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42l8.17-8.17a3,3,0,0,0,0-4.24L6.29,1.71A1,1,0,0,1,7.71.29l8.17,8.17a5,5,0,0,1,0,7.08L7.71,23.71A1,1,0,0,1,7,24Z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="body-calender">
+                                        <div class="week-header">
+                                            <label for="">ش</label>
+                                            <label for="">ی</label>
+                                            <label for="">د</label>
+                                            <label for="">س </label>
+                                            <label for="">چ </label>
+                                            <label for="">پ </label>
+                                            <label for="">ج</label>
+                                        </div>
+                                        <div class="week-body">
+
+                                            <template x-for="(x , index) in calenders?.dates">
+
+                                                <div class="item-number-day"
+                                                    :class="{
+                                                        'date-selected': isItemExistToSelected(x).length > 0,
+                                                        'date-dayIn': dayIn === x.dateEn,
+                                                        'date-dayOut': dayOut === x.dateEn,
+                                                        'date-reserved': x.data[x.data.length-1].isReserved,
+                                                        'date-disabled': getIsDaysGone(x),
+                                                        'not-set-price': (x.data.length === 0 || !x.data[x.data
+                                                                .length - 1]
+                                                            .price) && !getIsDaysGone(x)
+                                                    }"
+                                                    @click="(getIsDaysGone(x) || x.data.length === 0 || x.data[x.data.length-1].isReserved) ? onItemClicked(null) :onItemClicked(x.dateEn)">
+                                                    <template x-if="x.isToday">
+                                                        <label class="active-day" for="">امروز</label>
+                                                    </template>
+
+                                                    {{-- <template x-if="x.data.length > 0 && x.data[x.data.length-1].isReserved && !getIsDaysGone(x)">
+                                                        <label class="reserved" for="">رزرو</label>
+                                                    </template> --}}
+                                                    {{-- <template x-if="x.data.length > 0 && !x.data[x.data.length-1].isReserved && !getIsDaysGone(x)"> --}}
+                                                    {{-- <label class="not-reserved" for="">رزرو نشده</label> --}}
+                                                    {{-- </template> --}}
+
+                                                    <template x-if="x.status !== 'Hidden'">
+                                                        <h1 class="number"
+                                                            :class="{ 'text-danger': x.isHolyDay }"
+                                                            x-text="x.dateFa.split('-')[2]"></h1>
+                                                    </template>
+
+                                                    {{-- <small style="font-size: 12px">رزرو شده</small> --}}
+                                                    <div class="price-day">
+                                                        <template
+                                                            x-if="x.data.length > 0 && x.data[x.data.length-1].price && !getIsDaysGone(x)  && !x.data[x.data.length-1].isReserved">
+
+                                                            <span
+                                                                x-text="(x.data[x.data.length-1].price / 1000)"></span>
+                                                        </template>
+                                                        <template
+                                                            x-if="(x.data.length === 0 || !x.data[x.data.length-1].price) && (x.status !== 'Disabled' && x.status !== 'Hidden')">
+                                                            <p>بدون قیمت</p>
+                                                        </template>
+                                                    </div>
+                                                    {{-- <template x-if="x.data.length > 0 && x.data[x.data.length-1].isReserved"> --}}
+
+                                                    {{-- <span x-text="'رزرو شده'"></span> --}}
+                                                    {{-- </template> --}}
+                                                    {{-- <template x-if="x.data.length === 0 || !x.data[x.data.length-1].isReserved"> --}}
+
+                                                    {{-- <small x-text="'رزرو نشده'"></small> --}}
+                                                    {{-- </template> --}}
+                                                    <template x-if="x.status === 'Disabled'">
+                                                        <div class="disable-day">
+                                                            <div class="linear-disable"></div>
+
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
                     </div>
                     <div class="image w-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="" height="1" viewBox="0 0 459.023 1">
+                        {{-- <svg xmlns="http://www.w3.org/2000/svg" width="" height="1" viewBox="0 0 459.023 1">
                             <line id="Line_76" data-name="Line 76" x1="458.023" transform="translate(0.5 0.5)" fill="none" stroke="#adadad" stroke-linecap="round" stroke-width="1" stroke-dasharray="10 5"/>
-                        </svg>
+                        </svg> --}}
                     </div>
                     <div class="-title mb-3 mt-2">
                         <div class="d-flex align-items-center justify-content-between mb-2">
