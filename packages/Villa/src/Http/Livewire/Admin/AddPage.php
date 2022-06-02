@@ -12,6 +12,7 @@ use Livewire\Component;
 use Packages\Villa\src\Models\Residence;
 use Packages\Villa\src\Models\ResidenceFile;
 
+
 class AddPage extends Component
 {
     public Residence $req;
@@ -90,10 +91,19 @@ class AddPage extends Component
             'status_id' => 2,
         ]);
         $this->files = collect([]);
-    }
+    
+        // session()->flash('alert-toast', ['message' => 'ویلای شما با موفقیت اضافه شد', 'icon' => 'success']);
+        }
 
     public function render()
     {
+
+
+        if (count(Residence::query()->get()) >= 1) {
+            session()->flash('message', ['title' => 'امکان افزودن ویلا برای شما فراهم نیست', 'icon' => 'danger', '']);
+
+            redirect('/admin/villa/list');
+        }
         $statuses = Status::query()->where('type', 1)->get();
         $provinces = Province::query()->get();
 

@@ -52,6 +52,7 @@ class IndexPage extends Component
             array('id' => 11, 'text' => 'بهمن'),
             array('id' => 12, 'text' => 'اسفند'),
         ]);
+
     }
 
     public function render()

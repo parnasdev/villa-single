@@ -4,7 +4,7 @@
             {{ session('message')['title'] }}
         </x-parnas.alert>
     @endif
-        <div class="d-flex justify-content-between">
+        {{-- <div class="d-flex justify-content-between">
             <x-parnas.form-group class="mb-2 w-25">
                 <x-parnas.label class="mb-2">عملیات انتخابی ها</x-parnas.label>
                 <x-parnas.inputs.select class="form-select" wire:model="action" wire:change="actionMessage">
@@ -26,7 +26,7 @@
                     <i class="fas fa-{{ $trash ? 'eye' : 'trash'}}"></i>{{ $trash ? ' نمایش لیست' : ' نمایش سطل آشغال' }}
                 </x-parnas.buttons.button>
             </div>
-        </div>
+        </div> --}}
         <div class="table-responsive position-relative"
              x-data="{
             ordering(col) {
@@ -159,8 +159,8 @@
                 @endforelse
                 </tbody>
             </table>
-            <div class="d-flex justify-content-between">
-                <x-parnas.form-group class="mb-2 w-25">
+            {{-- <div class="d-flex justify-content-between"> --}}
+                {{-- <x-parnas.form-group class="mb-2 w-25">
                     <x-parnas.label class="mb-2">عملیات انتخابی ها</x-parnas.label>
                     <x-parnas.inputs.select class="form-select" wire:model="action" wire:change="actionMessage">
                         <x-parnas.inputs.option value="0">
@@ -175,9 +175,9 @@
                             </x-parnas.inputs.option>
                         @endif
                     </x-parnas.inputs.select>
-                </x-parnas.form-group>
+                </x-parnas.form-group> --}}
 {{--                {{$villas->links() }}--}}
-            </div>
+            {{-- </div> --}}
         </div>
 
 </div>

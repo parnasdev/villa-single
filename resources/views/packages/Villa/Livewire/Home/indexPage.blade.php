@@ -160,19 +160,17 @@
                 <div class="gallery-image d-flex justify-content-between align-items-start">
                     <div class="l-gallery">
                         <div class="image">
-                            <img src="/images/bg-beautifull.png" alt="" />
+                            <img src="{{ $files->first()?->url }}" alt="" />
                         </div>
                     </div>
                     <div class="r-gallery d-flex flex-wrap justify-content-between">
-                        <div class="image">
-                            <img src="/images/bg-beautifull.png" alt="" />
-                        </div>
-                        <div class="image">
-                            <img src="/images/bg-beautifull.png" alt="" />
-                        </div>
-                        <div class="image">
-                            <img src="/images/bg-beautifull.png" alt="" />
-                        </div>
+                        @foreach ($files as $key => $file)
+                            @if ($key <= 1)
+                                <div class="image">
+                                    <img src="{{ $file->url }}" alt="" />
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -307,19 +305,24 @@
                         <div class="line-horizontal"></div>
                         <div class="text-data d-flex flex-wrap align-items-center justify-contnet-start px-3">
                             <div class="c-data col-xl-2 col-lg-2 col-6 mb-3">
-                                <span class="f-15 ps-2">کوهستان</span>
+                                <span
+                                    class="f-12 {{ $this->getViewMode('کوهستان') ? 'active-data' : 'deactive-data' }}">کوهستان</span>
                             </div>
                             <div class="c-data col-xl-2 col-lg-2 col-6 mb-3">
-                                <span class="f-15 ps-2">جنگل</span>
+                                <span
+                                    class="f-12 {{ $this->getViewMode('جنگل') ? 'active-data' : 'deactive-data' }}">جنگل</span>
                             </div>
                             <div class="c-data col-xl-2 col-lg-2 col-6 mb-3">
-                                <span class="f-15 ps-2">دریا</span>
+                                <span
+                                    class="f-12 {{ $this->getViewMode('دریا') ? 'active-data' : 'deactive-data' }}">دریا</span>
                             </div>
                             <div class="c-data col-xl-2 col-lg-2 col-6 mb-3">
-                                <span class="f-15 ps-2">کوهپایه</span>
+                                <span
+                                    class="f-12 {{ $this->getViewMode('کوهپایه') ? 'active-data' : 'deactive-data' }}">کوهپایه</span>
                             </div>
                             <div class="c-data col-xl-2 col-lg-2 col-6 mb-3">
-                                <span class="f-15 ps-2">دشت</span>
+                                <span
+                                    class="f-12 {{ $this->getViewMode('دشت') ? 'active-data' : 'deactive-data' }}">دشت</span>
                             </div>
                         </div>
                     </div>
@@ -349,28 +352,41 @@
                         <div class="line-horizontal"></div>
                         <div class="text-data d-flex flex-wrap align-items-center justify-contnet-start px-3">
                             <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">مساحت:</span>
-                                <span class="f-15 ps-2">25</span>
+                                <span class="f-15 ps-2">مساحت زمین:</span>
+                                <span class="f-15 ps-2">{{ $residence->land_area }}</span>
                             </div>
                             <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">عنوان:</span>
-                                <span class="f-15 ps-2">متن</span>
+                                <span class="f-15 ps-2">نوع ساختمان:</span>
+                                <span
+                                    class="f-15 ps-2">{{ collect(config('vila.types'))->firstWhere('id', $residence->specifications['type'] ?? 0)['title'] ?? 'ندارد' }}</span>
                             </div>
                             <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">عنوان متن:</span>
-                                <span class="f-15 ps-2">متن</span>
+                                <span class="f-15 ps-2">تعداد اتاق:</span>
+                                <span class="f-15 ps-2">{{ $residence->room_count }}</span>
                             </div>
                             <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">تستیییی متن:</span>
-                                <span class="f-15 ps-2">متن</span>
+                                <span class="f-15 ps-2">مساحت بنا:</span>
+                                <span class="f-15 ps-2">{{ $residence->building_area }}</span>
                             </div>
                             <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">عنوانننن:</span>
-                                <span class="f-15 ps-2">متن</span>
+                                <span class="f-15 ps-2">ظرفیت:</span>
+                                <span class="f-15 ps-2">{{ $residence->capacity }}</span>
                             </div>
                             <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">عنوان:</span>
-                                <span class="f-15 ps-2">متن</span>
+                                <span class="f-15 ps-2">حداکثر ظرفیت:</span>
+                                <span class="f-15 ps-2">{{ $residence->maxCapacity }}</span>
+                            </div>
+                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
+                                <span class="f-15 ps-2">تعداد تشک:</span>
+                                <span class="f-15 ps-2">{{ $residence->mattress }}</span>
+                            </div>
+                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
+                                <span class="f-15 ps-2">تخت ۱ نفره:</span>
+                                <span class="f-15 ps-2">{{ $residence->singleBed }}</span>
+                            </div>
+                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
+                                <span class="f-15 ps-2">تخت ۲ نفره:</span>
+                                <span class="f-15 ps-2">{{ $residence->twinBed }}</span>
                             </div>
                         </div>
                     </div>
