@@ -1,4 +1,4 @@
-<div  x-data="{
+<div x-data="{
     calenders: @entangle('calenderData'),
     month: @entangle('currentMonth'),
     year: @entangle('currentYear'),
@@ -11,7 +11,7 @@
     init() {
         this.getCa()
         this.getReserves();
-      
+
     },
     nextStep() {
         if (this.datesSelected.length > 0) {
@@ -43,7 +43,7 @@
                 }
             }
             $wire.getDates(this.dayIn, this.dayOut).then(result => {
-                
+
                 this.datesSelected = JSON.parse(result);
             });
         }
@@ -56,7 +56,7 @@
     getCa() {
         this.isLoading = true;
         $wire.getCalender($wire.calendarRequest).then(result => {
-            
+
             this.calenders = JSON.parse(result);
             console.log(this.calenders)
             this.month = this.calenders.month;
@@ -118,7 +118,8 @@
     },
     getIsDaysGone(dateItem) {
         return dateItem.status === 'Disabled' || dateItem.status === 'Hidden'
-    }}">
+    }
+}">
     <section class="section-content">
         <div class="container-fluid px-0">
             <div class="p-header col-xl-12 col-lg-12">
@@ -224,7 +225,7 @@
                         <div class="line-horizontal"></div>
                         <div class="paragraph px-3">
                             <p class="f-14">
-                          {{ $residence->description }}
+                                {{ $residence->description }}
                             </p>
                         </div>
                     </div>
@@ -252,9 +253,9 @@
                             <span class="f-20 f-bold ps-3">امکانات</span>
                         </div>
                         <div class="line-horizontal"></div>
-                        <div class="text-data d-flex  flex-wrap align-items-center justify-contnet-start px-3">
+                        <div class="text-data d-flex flex-wrap align-items-center justify-contnet-start px-3">
                             @foreach ($residence->specifications['facilities'] as $faci)
-                                <div class="c-data col-xl-2 col-lg-2 me-4 mb-3">
+                                <div class="c-data col-xl-3 col-lg-3 col-6 mb-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="31.567" height="31.18"
                                         viewBox="0 0 31.567 31.18">
                                         <g id="Modem" transform="translate(0.075 1)">
@@ -278,6 +279,99 @@
                                         class="f-15 ps-2">{{ collect(config('vila.facilities'))->firstWhere('id', $faci ?? 0)['title'] ?? 'ندارد' }}</span>
                                 </div>
                             @endforeach
+                        </div>
+                    </div>
+                    <div class="box-data px-3 py-4 mb-4">
+                        <div class="title d-flex align-items-center">
+                            <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24">
+                                <path id="Path_1022" data-name="Path 1022"
+                                    d="M1,5.5a12.254,12.254,0,0,0,.2,2.553,2.311,2.311,0,0,0,.56,1.188,2.311,2.311,0,0,0,1.188.56A12.254,12.254,0,0,0,5.5,10a12.254,12.254,0,0,0,2.553-.2,2.311,2.311,0,0,0,1.188-.56A2.311,2.311,0,0,0,9.8,8.053,12.254,12.254,0,0,0,10,5.5a12.254,12.254,0,0,0-.2-2.553,2.311,2.311,0,0,0-.56-1.188A2.311,2.311,0,0,0,8.053,1.2,12.254,12.254,0,0,0,5.5,1a12.255,12.255,0,0,0-2.553.2,2.311,2.311,0,0,0-1.188.56A2.311,2.311,0,0,0,1.2,2.947,12.255,12.255,0,0,0,1,5.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_1023" data-name="Path 1023"
+                                    d="M1,18.5a12.254,12.254,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.26,12.26,0,0,0,5.5,23a12.26,12.26,0,0,0,2.553-.2,2.312,2.312,0,0,0,1.188-.56,2.312,2.312,0,0,0,.56-1.188A12.254,12.254,0,0,0,10,18.5a12.254,12.254,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.26,12.26,0,0,0,5.5,14a12.26,12.26,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.254,12.254,0,0,0,1,18.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_1024" data-name="Path 1024"
+                                    d="M14,5.5a12.26,12.26,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.254,12.254,0,0,0,18.5,10a12.254,12.254,0,0,0,2.553-.2,2.312,2.312,0,0,0,1.188-.56,2.312,2.312,0,0,0,.56-1.188A12.26,12.26,0,0,0,23,5.5a12.26,12.26,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.254,12.254,0,0,0,18.5,1a12.254,12.254,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.26,12.26,0,0,0,14,5.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_1025" data-name="Path 1025"
+                                    d="M14,18.5a12.26,12.26,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.26,12.26,0,0,0,18.5,23a12.26,12.26,0,0,0,2.553-.2A1.942,1.942,0,0,0,22.8,21.053,12.26,12.26,0,0,0,23,18.5a12.26,12.26,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.26,12.26,0,0,0,18.5,14a12.26,12.26,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.26,12.26,0,0,0,14,18.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </svg>
+                            <span class="f-20 f-bold ps-3">چشم انداز</span>
+                        </div>
+                        <div class="line-horizontal"></div>
+                        <div class="text-data d-flex flex-wrap align-items-center justify-contnet-start px-3">
+                            <div class="c-data col-xl-2 col-lg-2 col-6 mb-3">
+                                <span class="f-15 ps-2">کوهستان</span>
+                            </div>
+                            <div class="c-data col-xl-2 col-lg-2 col-6 mb-3">
+                                <span class="f-15 ps-2">جنگل</span>
+                            </div>
+                            <div class="c-data col-xl-2 col-lg-2 col-6 mb-3">
+                                <span class="f-15 ps-2">دریا</span>
+                            </div>
+                            <div class="c-data col-xl-2 col-lg-2 col-6 mb-3">
+                                <span class="f-15 ps-2">کوهپایه</span>
+                            </div>
+                            <div class="c-data col-xl-2 col-lg-2 col-6 mb-3">
+                                <span class="f-15 ps-2">دشت</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-data px-3 py-4 mb-4">
+                        <div class="title d-flex align-items-center">
+                            <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24">
+                                <path id="Path_1022" data-name="Path 1022"
+                                    d="M1,5.5a12.254,12.254,0,0,0,.2,2.553,2.311,2.311,0,0,0,.56,1.188,2.311,2.311,0,0,0,1.188.56A12.254,12.254,0,0,0,5.5,10a12.254,12.254,0,0,0,2.553-.2,2.311,2.311,0,0,0,1.188-.56A2.311,2.311,0,0,0,9.8,8.053,12.254,12.254,0,0,0,10,5.5a12.254,12.254,0,0,0-.2-2.553,2.311,2.311,0,0,0-.56-1.188A2.311,2.311,0,0,0,8.053,1.2,12.254,12.254,0,0,0,5.5,1a12.255,12.255,0,0,0-2.553.2,2.311,2.311,0,0,0-1.188.56A2.311,2.311,0,0,0,1.2,2.947,12.255,12.255,0,0,0,1,5.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_1023" data-name="Path 1023"
+                                    d="M1,18.5a12.254,12.254,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.26,12.26,0,0,0,5.5,23a12.26,12.26,0,0,0,2.553-.2,2.312,2.312,0,0,0,1.188-.56,2.312,2.312,0,0,0,.56-1.188A12.254,12.254,0,0,0,10,18.5a12.254,12.254,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.26,12.26,0,0,0,5.5,14a12.26,12.26,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.254,12.254,0,0,0,1,18.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_1024" data-name="Path 1024"
+                                    d="M14,5.5a12.26,12.26,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.254,12.254,0,0,0,18.5,10a12.254,12.254,0,0,0,2.553-.2,2.312,2.312,0,0,0,1.188-.56,2.312,2.312,0,0,0,.56-1.188A12.26,12.26,0,0,0,23,5.5a12.26,12.26,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.254,12.254,0,0,0,18.5,1a12.254,12.254,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.26,12.26,0,0,0,14,5.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_1025" data-name="Path 1025"
+                                    d="M14,18.5a12.26,12.26,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.26,12.26,0,0,0,18.5,23a12.26,12.26,0,0,0,2.553-.2A1.942,1.942,0,0,0,22.8,21.053,12.26,12.26,0,0,0,23,18.5a12.26,12.26,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.26,12.26,0,0,0,18.5,14a12.26,12.26,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.26,12.26,0,0,0,14,18.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </svg>
+                            <span class="f-20 f-bold ps-3">اطلاعات</span>
+                        </div>
+                        <div class="line-horizontal"></div>
+                        <div class="text-data d-flex flex-wrap align-items-center justify-contnet-start px-3">
+                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
+                                <span class="f-15 ps-2">مساحت:</span>
+                                <span class="f-15 ps-2">25</span>
+                            </div>
+                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
+                                <span class="f-15 ps-2">عنوان:</span>
+                                <span class="f-15 ps-2">متن</span>
+                            </div>
+                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
+                                <span class="f-15 ps-2">عنوان متن:</span>
+                                <span class="f-15 ps-2">متن</span>
+                            </div>
+                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
+                                <span class="f-15 ps-2">تستیییی متن:</span>
+                                <span class="f-15 ps-2">متن</span>
+                            </div>
+                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
+                                <span class="f-15 ps-2">عنوانننن:</span>
+                                <span class="f-15 ps-2">متن</span>
+                            </div>
+                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
+                                <span class="f-15 ps-2">عنوان:</span>
+                                <span class="f-15 ps-2">متن</span>
+                            </div>
                         </div>
                     </div>
                     <div class="box-data px-3 py-4 mb-4">
@@ -470,7 +564,7 @@
                             <div class="price-day selected-day-list">
                                 <span>{{ $this->getDateFA($dateItem) }}</span>
                                 @if ($loop->index === count($datesSelected) - 1)
-                                    <strong  class="span-price-day">روز خروج</strong>
+                                    <strong class="span-price-day">روز خروج</strong>
                                 @else
                                     {{-- @dd($this->getPrice($dateItem)) --}}
                                     <strong>{{ number_format($this->getPrice($dateItem)[count($this->getPrice($dateItem)) - 1]['price']) }}</strong>
