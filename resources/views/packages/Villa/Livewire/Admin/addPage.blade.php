@@ -365,11 +365,11 @@
                             </div>
                             <div class="SubContent d-flex align-items-center p-2">
                                 @foreach (collect(config('vila.views')) as $view)
-                                    <div class="d-flex align-items-center justify-content-between col-xl-3 col-lg-3 col-6">
+                                    <div class="d-flex align-items-center justify-content-start col-xl-3 col-lg-3 col-6">
                                         <label for="ff{{ $view['title'] }}">{{ $view['title'] }}</label>
                                         <input type="checkbox" name="ff{{ $view['id'] }}"
                                             wire:model="req.specifications.view" value="{{ $view['title'] }}"
-                                            id="ff{{ $view['title'] }}">
+                                            id="ff{{ $view['title'] }}"  style="width: 30% !important">
                                     </div>
                                 @endforeach
                             </div>
@@ -385,7 +385,7 @@
                             </div>
                             <div class="SubContent d-flex flex-wrap p-2">
                                 @foreach (collect(config('vila.facilities')) as $faci)
-                                    <div class="d-flex align-items-center justify-content-between col-xl-3 col-lg-3 col-6 mb-4">
+                                    <div class="d-flex align-items-center justify-content-start col-xl-3 col-lg-3 col-6 mb-4">
                                         <label for="ff{{ $faci['id'] }}">{{ $faci['title'] }}</label>
                                         <input type="checkbox" class="input-checkmarkData"
                                             name="ff{{ $faci['id'] }}" wire:model="req.specifications.facilities"
