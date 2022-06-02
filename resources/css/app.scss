@@ -3382,14 +3382,17 @@ form .inputs input {
     .left-header-index {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         width: 40%;
         position: relative;
         .btn-account-user {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: $white-color;
+            color: #347557;
+            border: 3px solid #347557 !important;
+            border-radius: 15px;
+            padding: 10px 15px;
             background-color: unset;
             border: none;
             outline: none;
@@ -4116,12 +4119,12 @@ button {
             margin-top: 13px;
         }
         .r-data {
-            flex: 0 0 75% !important;
-            max-width: 75% !important;
+            flex: 0 0 62.9% !important;
+            max-width: 62.9% !important;
         }
         .l-data {
-            flex: 0 0 24% !important;
-            max-width: 24% !important;
+            flex: 0 0 35% !important;
+            max-width: 35% !important;
             position: sticky;
             top: 10px;
         }
@@ -4169,6 +4172,19 @@ button {
     }
     100% {
         transform: scale(1);
+    }
+}
+
+@media (max-width:1280px) {
+    .section-content {
+        .p-header {
+            .image {
+                img {
+                    width: 50% !important;
+                    bottom: -65px !important;
+                }
+            }
+        }
     }
 }
 
