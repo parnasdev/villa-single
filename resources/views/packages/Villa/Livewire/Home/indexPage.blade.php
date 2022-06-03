@@ -136,7 +136,7 @@
                         <span class="f-29 px-2">؛</span>
                         <span class="f-27 color-custom-base f-bold">شمال کشور</span>
                     </div>
-                    <div class="btn-data col-xl-1 col-lg-1">
+                    <div class="btn-data col-xl-1 col-lg-1 col-5">
                         <button class="w-100 bg-custom-base text-white px-3 py-3">
                             اجاره ویلا
                         </button>
@@ -157,7 +157,7 @@
                 <div class="title pb-4">
                     <h3>ر{{ $residence->title }}</h3>
                 </div>
-                <div class="gallery-image d-flex justify-content-between align-items-start">
+                <div class="gallery-image d-flex flex-wrap justify-content-between align-items-start">
                     <div class="l-gallery">
                         <div class="image">
                             <img src="{{ $files->first()?->url }}" alt="" />
@@ -351,41 +351,41 @@
                         </div>
                         <div class="line-horizontal"></div>
                         <div class="text-data d-flex flex-wrap align-items-center justify-contnet-start px-3">
-                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">مساحت زمین:</span>
+                            <div class="c-data col-xl-4 col-lg-4 col-12 mb-3">
+                                <span class="f-15 ps-2 f-bold">مساحت زمین:</span>
                                 <span class="f-15 ps-2">{{ $residence->land_area }}</span>
                             </div>
-                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">نوع ساختمان:</span>
+                            <div class="c-data col-xl-4 col-lg-4 col-12 mb-3">
+                                <span class="f-15 ps-2 f-bold">نوع ساختمان:</span>
                                 <span
                                     class="f-15 ps-2">{{ collect(config('vila.types'))->firstWhere('id', $residence->specifications['type'] ?? 0)['title'] ?? 'ندارد' }}</span>
                             </div>
-                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">تعداد اتاق:</span>
+                            <div class="c-data col-xl-4 col-lg-4 col-12 mb-3">
+                                <span class="f-15 ps-2 f-bold">تعداد اتاق:</span>
                                 <span class="f-15 ps-2">{{ $residence->room_count }}</span>
                             </div>
-                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">مساحت بنا:</span>
+                            <div class="c-data col-xl-4 col-lg-4 col-12 mb-3">
+                                <span class="f-15 ps-2 f-bold">مساحت بنا:</span>
                                 <span class="f-15 ps-2">{{ $residence->building_area }}</span>
                             </div>
-                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">ظرفیت:</span>
+                            <div class="c-data col-xl-4 col-lg-4 col-12 mb-3">
+                                <span class="f-15 ps-2 f-bold">ظرفیت:</span>
                                 <span class="f-15 ps-2">{{ $residence->capacity }}</span>
                             </div>
-                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">حداکثر ظرفیت:</span>
+                            <div class="c-data col-xl-4 col-lg-4 col-12 mb-3">
+                                <span class="f-15 ps-2 f-bold">حداکثر ظرفیت:</span>
                                 <span class="f-15 ps-2">{{ $residence->maxCapacity }}</span>
                             </div>
-                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">تعداد تشک:</span>
+                            <div class="c-data col-xl-4 col-lg-4 col-12 mb-3">
+                                <span class="f-15 ps-2 f-bold">تعداد تشک:</span>
                                 <span class="f-15 ps-2">{{ $residence->mattress }}</span>
                             </div>
-                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">تخت ۱ نفره:</span>
+                            <div class="c-data col-xl-4 col-lg-4 col-12 mb-3">
+                                <span class="f-15 ps-2 f-bold">تخت ۱ نفره:</span>
                                 <span class="f-15 ps-2">{{ $residence->singleBed }}</span>
                             </div>
-                            <div class="c-data col-xl-4 col-lg-4 col-6 mb-3">
-                                <span class="f-15 ps-2">تخت ۲ نفره:</span>
+                            <div class="c-data col-xl-4 col-lg-4 col-12 mb-3">
+                                <span class="f-15 ps-2 f-bold">تخت ۲ نفره:</span>
                                 <span class="f-15 ps-2">{{ $residence->twinBed }}</span>
                             </div>
                         </div>
@@ -421,7 +421,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="box-data px-3 py-4 mb-4">
+                    <div class="box-data px-3 py-4 mb-1">
                         <div class="title d-flex align-items-center">
                             <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24">
@@ -452,11 +452,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="l-data box-data px-2 py-2" @send-data.window="getDates">
+                <div class="l-data box-data px-2 pt-2 pb-5" @send-data.window="getDates">
                     <div class="box-data">
-                        <div class="title  pt-2">
+                        <div class="title pt-2">
                             {{-- <span class="f-15 f-bold">رزرو اقامتگاه</span> --}}
-                            <div class="calenders" x-show="step === 1">
+                            <div class="calenders mt-2" x-show="step === 1">
                                 <section>
                                     <div class="calender">
                                         <div class="loading" x-show="isLoading">
