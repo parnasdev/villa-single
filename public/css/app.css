@@ -9562,6 +9562,9 @@ button {
     max-width: 100% !important;
   }
 
+  .section-content .p-header {
+    height: 85vh;
+  }
   .section-content .p-header .title-head {
     top: 270px;
   }
