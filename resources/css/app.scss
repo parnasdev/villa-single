@@ -1,5 +1,6 @@
 @import "./files/bootstrap.rtl.min.css";
 @import "./files/all.css";
+
 $base-color: #CAA85E;
 $base-color-second: #C49C74;
 $light-color: #E0E0E0;
@@ -21,9 +22,9 @@ $red-color: #D96060;
     src: url('../fonts/dana/eot/dana-bold.eot');
     src: url('../fonts/dana/eot/dana-bold.eot?#iefix') format('embedded-opentype'),
         /* IE6-8 */
-        url('../fonts/dana/woff2/DanaFaNum-Regular.woff2') format('woff2'),
+    url('../fonts/dana/woff2/DanaFaNum-Regular.woff2') format('woff2'),
         /* FF39+,Chrome36+, Opera24+*/
-        url('../fonts/dana/woff/DanaFaNum-Regular.woff') format('woff');
+    url('../fonts/dana/woff/DanaFaNum-Regular.woff') format('woff');
     /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
 }
 
@@ -33,6 +34,7 @@ $red-color: #D96060;
     font-weight: normal;
     src: url('../fonts/dana/DancingScript-VariableFont_wght.ttf');
 }
+
 
 body {
     font-family: 'dana' !important;
@@ -549,7 +551,7 @@ i {
 
         svg path,
         svg g {
-            fill: $white-color  !important;
+            fill: $white-color !important;
         }
 
         span {
@@ -582,7 +584,7 @@ i {
 
         svg path,
         svg g {
-            fill: $base-color  !important;
+            fill: $base-color !important;
         }
 
         span {
@@ -1084,7 +1086,7 @@ i {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid $base-color  !important;
+    border: 2px solid $base-color !important;
     cursor: pointer;
     position: relative;
 
@@ -1103,7 +1105,7 @@ i {
     }
 
     span {
-        color: $base-color  !important;
+        color: $base-color !important;
         font-family: 'dana' !important;
     }
 }
@@ -1536,21 +1538,21 @@ footer {
 }
 
 .plyr__control--overlaid {
-    background: $base-color  !important;
+    background: $base-color !important;
     padding: 20px !important;
 }
 
 .plyr--full-ui input[type=range] {
-    color: $base-color  !important;
+    color: $base-color !important;
 }
 
 .plyr__time--current {
-    background: $base-color  !important;
+    background: $base-color !important;
     border-radius: 4px !important;
 }
 
 .plyr__control:hover {
-    background: $base-color  !important;
+    background: $base-color !important;
 }
 
 
@@ -1588,7 +1590,8 @@ footer {
         }
     }
 
-    .menuMobile-fixed {}
+    .menuMobile-fixed {
+    }
 
     body {
         overflow-x: hidden;
@@ -2242,8 +2245,8 @@ input {
 
 .active-day {
     position: absolute;
-    //right: -9px;
-    //top: 8px;
+    right: -12px;
+    top: 8px;
     padding: 1px 8px;
     transform: rotate(270deg);
     border-radius: 10px 0;
@@ -2790,7 +2793,7 @@ body {
     position: relative;
 
     a {
-        color: $base-color-second  !important;
+        color: $base-color-second !important;
     }
 
     svg {
@@ -2908,7 +2911,7 @@ body {
 
             input {
                 @include input-base;
-                background-color: $white-color  !important;
+                background-color: $white-color !important;
             }
         }
 
@@ -2942,7 +2945,7 @@ body {
             font-weight: 700;
 
             strong {
-                color: $gray-color-three  !important;
+                color: $gray-color-three !important;
             }
         }
 
@@ -3182,7 +3185,8 @@ body {
     }
 }
 
-.title-villa-main {}
+.title-villa-main {
+}
 
 .villa-list-index {
     margin: 2rem auto 0 auto;
@@ -3667,6 +3671,7 @@ form .inputs input {
             outline: none;
             position: relative;
             font-size: 14px;
+
             svg {
                 path {
                     fill: #347557;
@@ -3743,7 +3748,7 @@ form .inputs input {
                             margin-left: 15px;
 
                             path {
-                                fill: $gray-color  !important;
+                                fill: $gray-color !important;
                             }
                         }
 
@@ -3764,7 +3769,7 @@ form .inputs input {
 
                         svg {
                             margin-left: 15px;
-                            fill: $gray-color  !important;
+                            fill: $gray-color !important;
                         }
 
                         &:hover {
@@ -3773,11 +3778,11 @@ form .inputs input {
                             border-radius: 10px 10px 10px 0;
 
                             svg {
-                                fill: $white-color  !important;
+                                fill: $white-color !important;
                             }
 
                             a {
-                                color: $white-color  !important;
+                                color: $white-color !important;
                             }
                         }
                     }
@@ -4584,7 +4589,7 @@ button {
     }
 }
 
-@media (max-width:1280px) {
+@media (max-width: 1280px) {
     .section-content {
         .p-header {
             .image {
@@ -4700,6 +4705,7 @@ button {
         }
     }
 }
+
 
 @import "./files/mobile.css";
 @import "./files/tablet.css";
