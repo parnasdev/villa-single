@@ -91,13 +91,14 @@ return array(
         'can' => 'users.read',
         'order' => 5
     ),
+    // array(
+    //     'title' => 'رزروها',
+    //     'route' => 'admin.villa.my-reserves',
+    //     'can' => '',
+    //     'links' => array(),
+    //     'order' => 3
+    // ),
     array(
-        'title' => 'رزروها',
-        'route' => 'admin.villa.my-reserves',
-        'can' => '',
-        'links' => array(),
-        'order' => 3
-    ),array(
         'title' => 'ویلا',
         'route' => '',
         'links' => array(

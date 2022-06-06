@@ -52,18 +52,18 @@ class IndexPage extends Component
             array('id' => 11, 'text' => 'بهمن'),
             array('id' => 12, 'text' => 'اسفند'),
         ]);
-
     }
 
     public function render()
     {
         $this->residence = Residence::query()->where('status_id', 1)->get()->first();
         $province = Province::query()->where('id', $this->residence->province_id)->get();
-        $files = ResidenceFile::query()->where('residence_id', $this->residence->id)->get();
+        $files = ResidenceFile::query()->where('residence_id', $this->residence->id)->where('type', 2)->get();
+        $thumbanil = ResidenceFile::query()->where('residence_id', $this->residence->id)->where('type', 1)->get();
         $cities = City::query()->where('province_id', $this->residence->province_id)->get();
         $city = $cities->where('id', $this->residence->city_id);
         $this->fillCalendarRequest();
-        return view('Villa::Livewire.Home.indexPage', compact('province', 'city', 'files'));
+        return view('Villa::Livewire.Home.indexPage', compact('province', 'city', 'files', 'thumbanil'));
     }
 
 

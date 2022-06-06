@@ -124,15 +124,15 @@
         <div class="container-fluid px-0">
             <div class="p-header col-xl-12 col-lg-12">
                 <div class="backface-drop">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    {{-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                         <path fill="#d7e2ea" fill-opacity="1"
                             d="M0,0L60,48C120,96,240,192,360,202.7C480,213,600,139,720,133.3C840,128,960,192,1080,192C1200,192,1320,128,1380,96L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
                         </path>
-                    </svg>
+                    </svg> --}}
                 </div>
                 <div class="title-head d-flex flex-column align-items-center">
-                    <div class="d-flex">
-                        <h1>اجاره ویلا</h1>
+                    <div style=" z-index:2;" class="d-flex">
+                        <h1 class="text-white">اجاره ویلا</h1>
                         <span class="f-29 px-2">؛</span>
                         <span class="f-27 color-custom-base f-bold">شمال کشور</span>
                     </div>
@@ -144,7 +144,7 @@
                 </div>
 
                 <div class="image w-100 d-flex justify-content-center">
-                    <img src="/images/villa-image.svg" alt="villa-image" />
+                    <img class="w-100" src="{{ $thumbanil->first()?->url }}" alt="villa-image" />
                 </div>
             </div>
         </div>
