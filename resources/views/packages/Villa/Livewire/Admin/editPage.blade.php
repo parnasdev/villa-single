@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xl-12 col-lg-12 d-flex justify-content-between">
-                <div class="card col-lg-9">
+                <div style="width: 74% !important;" class="card ">
                     <div class="card-header col-xl-12 col-lg-12 col-12">
                         <h6>اضافه کردن اقامتگاه</h6>
                     </div>
@@ -396,7 +396,7 @@
                     <div class="col-lg-12">
                         <div class="card Content">
                             <div class="card-header HeaderContent">
-                                <h6>با انتخاب تصاویر مناسب نمایش خوبی از اقامتگاهتان داشته باشید</h6>
+                                <h6 class="mb-0 text-sm">با انتخاب تصاویر مناسب نمایش خوبی از اقامتگاهتان داشته باشید</h6>
                             </div>
                             <div class="SubContent p-2">
 
@@ -412,7 +412,7 @@
                             <div class="Content">
                                 <div class="card HeaderContent">
                                     <div class="card-header">
-                                        <h6>وضعیت انتشار</h6>
+                                        <h6 class="mb-0">وضعیت انتشار</h6>
                                     </div>
                                     <div class="row no-gutters">
                                         <div class="col-md-6 my-2 mx-2">
@@ -441,7 +441,7 @@
                             <div class="Content mt-2">
                                 <div class="card HeaderContent">
                                     <div class="card-header">
-                                        <h6>وضعیت رزرو</h6>
+                                        <h6 class="mb-0">وضعیت رزرو</h6>
                                     </div>
                                     <div class="row no-gutters">
 
@@ -473,11 +473,11 @@
                         <div class="Content mt-2">
                             <div class="card no-gutters">
                                 <div class="card-header">
-                                    <h6>تصاویر</h6>
+                                    <h6 class="mb-0">تصاویر</h6>
                                 </div>
                             </div>
                             <div class="row no-gutters">
-                                <div class="box-design bg-white p-7">
+                                <div class="box-design mt-4 bg-white p-7">
                                     <div class="pl-8 mb-5">
 
                                         <x-parnas.inputs.file :file="$file['url']" model="file.url">
@@ -488,7 +488,7 @@
                                     </div>
                                     <x-parnas.form-group class="c-input align-items-end flex-100">
                                         <div class="d-flex justify-content-start m-left-auto pos-relative pr-5">
-                                            <label class="d-flex f-12 text-63">
+                                            <label class="d-flex title-bold f-12 text-63">
                                                 متن جایگزین
                                                 <div class="rx-title title-input pb-10">
                                                     <div class="p-rx">
@@ -507,7 +507,7 @@
                                     <div>
                                         <div
                                             class="d-flex justify-content-start m-left-auto mt-2 pos-relative pr-10 pb-3">
-                                            <label class="d-flex f-12 text-63">
+                                            <label class="d-flex f-12 title-bold text-63">
                                                 نوع تصویر
                                                 <div class="rx-title title-input pb-10">
                                                     <div class="p-rx">
@@ -516,8 +516,8 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <x-parnas.form-group class="select align-items-center flex-100">
-                                            <x-parnas.inputs.select class="w-100" wire:model.defer="file.type">
+                                        <x-parnas.form-group class="select align-items-center  flex-100">
+                                            <x-parnas.inputs.select class="select-base w-100" wire:model.defer="file.type">
                                                 <x-parnas.inputs.option value="{{ null }}">انتخاب نوع
                                                 </x-parnas.inputs.option>
                                                 <x-parnas.inputs.option value="1">عکس شاخص</x-parnas.inputs.option>
@@ -551,11 +551,11 @@
                                     </div>
 
                                     <ul class="list-unstyled mt-3 list-inline">
-                                        <li class="f-12 f-bold mb-5 file-title">
+                                        <li class="f-12 f-bold mb-5 title-bold">
                                             عکس های شاخص
                                         </li>
                                         @foreach ($files->where('type', 1) as $key => $_file)
-                                            <li class="list-inline-item">
+                                            <li class="list-inline-item w-100">
                                                 @php
                                                     $path = str_replace(env('APP_URL') . '/storage', 'public', $_file['url']);
                                                     $fs = '';
@@ -565,9 +565,9 @@
                                                 @endphp
                                                 @switch($fs)
                                                     @case(\Illuminate\Support\Str::startsWith($fs, 'image'))
-                                                    <div class="img-gallery-admin">
-                                                        <img src="{{ $_file['url'] }}" width="80" alt="{{ $_file['alt'] }}">
-                                                        <x-parnas.buttons.button type="button" class="btn btn-sm btn-danger"
+                                                    <div class="img-gallery-admin-top">
+                                                        <img src="{{ $_file['url'] }}" alt="{{ $_file['alt'] }}">
+                                                        <x-parnas.buttons.button type="button" class="btn-delete-imgs btn-danger"
                                                                                  wire:click="deleteFile({{ $key }})"
                                                                                  wire:loading.attr="disabled"
                                                                                  wire:target="deleteFile">
@@ -610,48 +610,51 @@
                                         @endforeach
                                     </ul>
 
+                                    <li class="f-12 f-bold mb-5 title-bold">
+                                        گالری
+                                    </li>
+                                    <ul class="list-unstyled list-inline parent-images-gallery">
 
-                                    <ul class="list-unstyled list-inline">
-                                        <li class="f-12 f-bold mb-5 file-title">
-                                            گالری
-                                        </li>
                                         @foreach ($files->where('type', 2) as $key => $_file)
                                             <li class="list-inline-item">
-                                                @php
-                                                    $path = str_replace(env('APP_URL') . '/storage', 'public', $_file['url']);
-                                                    $fs = '';
-                                                    if (\Illuminate\Support\Facades\Storage::exists($path)) {
-                                                        $fs = \Illuminate\Support\Facades\Storage::mimeType($path);
-                                                    }
-                                                @endphp
-                                                @switch($fs)
-                                                    @case(\Illuminate\Support\Str::startsWith($fs, 'image'))
-                                                    <img src="{{ $_file['url'] }}" width="80" alt="{{ $_file['alt'] }}">
-                                                    @break
+                                                <div class="img-gallery-admin">
+                                                    @php
+                                                        $path = str_replace(env('APP_URL') . '/storage', 'public', $_file['url']);
+                                                        $fs = '';
+                                                        if (\Illuminate\Support\Facades\Storage::exists($path)) {
+                                                            $fs = \Illuminate\Support\Facades\Storage::mimeType($path);
+                                                        }
+                                                    @endphp
+                                                    @switch($fs)
+                                                        @case(\Illuminate\Support\Str::startsWith($fs, 'image'))
+                                                        <img src="{{ $_file['url'] }}" width="80" alt="{{ $_file['alt'] }}">
+                                                        @break
 
-                                                    @default
-                                                    <a href="{{ $_file['url'] }}">فایل</a>
-                                                @endswitch
-                                                <x-parnas.buttons.button type="button" class="btn btn-sm btn-danger"
-                                                                         wire:click="deleteFile({{ $key }})"
-                                                                         wire:loading.attr="disabled"
-                                                                         wire:target="deleteFile">
-                                                    <svg width="20" height="20" viewBox="0 0 31 31" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M12.7852 19.2988L12.7852 15.4647" stroke="#fff"
-                                                              stroke-width="2"
-                                                              stroke-linecap="round"/>
-                                                        <path d="M17.8828 19.2988L17.8828 15.4647" stroke="#fff"
-                                                              stroke-width="2"
-                                                              stroke-linecap="round"/>
-                                                        <path
-                                                            d="M3.85938 9.07617H26.8071V9.07617C25.0914 9.07617 24.2336 9.07617 23.6689 9.56799C23.5996 9.62832 23.5346 9.69336 23.4743 9.76264C22.9824 10.3273 22.9824 11.1851 22.9824 12.9008V21.6909C22.9824 23.5765 22.9824 24.5193 22.3967 25.1051C21.8109 25.6909 20.8681 25.6909 18.9824 25.6909H11.684C9.79837 25.6909 8.85556 25.6909 8.26977 25.1051C7.68399 24.5193 7.68399 23.5765 7.68399 21.6909V12.9008C7.68399 11.1851 7.68399 10.3273 7.19217 9.76264C7.13184 9.69336 7.0668 9.62832 6.99752 9.56799C6.43283 9.07617 5.57501 9.07617 3.85938 9.07617V9.07617Z"
-                                                            stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                                                        <path
-                                                            d="M12.8702 4.43653C13.0155 4.30065 13.3356 4.18058 13.7809 4.09494C14.2262 4.00931 14.7718 3.96289 15.3331 3.96289C15.8944 3.96289 16.44 4.00931 16.8853 4.09494C17.3306 4.18058 17.6507 4.30065 17.7959 4.43653"
-                                                            stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                                                    </svg>
-                                                </x-parnas.buttons.button>
+                                                        @default
+                                                        <a href="{{ $_file['url'] }}">فایل</a>
+                                                    @endswitch
+                                                    <x-parnas.buttons.button type="button" class="bg-danger btn-delete-imgs"
+                                                                             wire:click="deleteFile({{ $key }})"
+                                                                             wire:loading.attr="disabled"
+                                                                             wire:target="deleteFile">
+                                                        <svg width="20" height="20" viewBox="0 0 31 31" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12.7852 19.2988L12.7852 15.4647" stroke="#fff"
+                                                                  stroke-width="2"
+                                                                  stroke-linecap="round"/>
+                                                            <path d="M17.8828 19.2988L17.8828 15.4647" stroke="#fff"
+                                                                  stroke-width="2"
+                                                                  stroke-linecap="round"/>
+                                                            <path
+                                                                d="M3.85938 9.07617H26.8071V9.07617C25.0914 9.07617 24.2336 9.07617 23.6689 9.56799C23.5996 9.62832 23.5346 9.69336 23.4743 9.76264C22.9824 10.3273 22.9824 11.1851 22.9824 12.9008V21.6909C22.9824 23.5765 22.9824 24.5193 22.3967 25.1051C21.8109 25.6909 20.8681 25.6909 18.9824 25.6909H11.684C9.79837 25.6909 8.85556 25.6909 8.26977 25.1051C7.68399 24.5193 7.68399 23.5765 7.68399 21.6909V12.9008C7.68399 11.1851 7.68399 10.3273 7.19217 9.76264C7.13184 9.69336 7.0668 9.62832 6.99752 9.56799C6.43283 9.07617 5.57501 9.07617 3.85938 9.07617V9.07617Z"
+                                                                stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                                                            <path
+                                                                d="M12.8702 4.43653C13.0155 4.30065 13.3356 4.18058 13.7809 4.09494C14.2262 4.00931 14.7718 3.96289 15.3331 3.96289C15.8944 3.96289 16.44 4.00931 16.8853 4.09494C17.3306 4.18058 17.6507 4.30065 17.7959 4.43653"
+                                                                stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                                                        </svg>
+                                                    </x-parnas.buttons.button>
+                                                </div>
+
                                                 {{-- <x-parnas.buttons.button type="button" class="btn btn-sm btn-primary"
                                                     wire:click="editFile({{ $key }})" wire:loading.attr="disabled"
                                                     wire:target="deleteFile , editFile">
@@ -670,7 +673,7 @@
                                     </ul>
 
                                     <ul class="list-unstyled list-inline">
-                                        <li class="f-12 f-bold mb-5 file-title">
+                                        <li class="f-12 f-bold mb-5 title-bold">
                                             فایل ها
                                         </li>
                                         @foreach ($files->where('type', 3) as $key => $_file)
@@ -690,7 +693,7 @@
                                                     @default
                                                     <a href="{{ $_file['url'] }}">فایل</a>
                                                 @endswitch
-                                                <x-parnas.buttons.button type="button" class="btn btn-sm btn-danger"
+                                                <x-parnas.buttons.button type="button" class="  btn-danger"
                                                                          wire:click="deleteFile({{ $key }})"
                                                                          wire:loading.attr="disabled"
                                                                          wire:target="deleteFile">
