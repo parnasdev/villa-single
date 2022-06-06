@@ -488,7 +488,7 @@
                                     </div>
                                     <x-parnas.form-group class="c-input align-items-end flex-100">
                                         <div class="d-flex justify-content-start m-left-auto pos-relative pr-5">
-                                            <label class="d-flex f-12 text-63">
+                                            <label class="d-flex title-bold f-12 text-63">
                                                 متن جایگزین
                                                 <div class="rx-title title-input pb-10">
                                                     <div class="p-rx">
@@ -507,7 +507,7 @@
                                     <div>
                                         <div
                                             class="d-flex justify-content-start m-left-auto mt-2 pos-relative pr-10 pb-3">
-                                            <label class="d-flex f-12 text-63">
+                                            <label class="d-flex f-12 title-bold text-63">
                                                 نوع تصویر
                                                 <div class="rx-title title-input pb-10">
                                                     <div class="p-rx">
@@ -516,8 +516,8 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <x-parnas.form-group class="select align-items-center flex-100">
-                                            <x-parnas.inputs.select class="w-100" wire:model.defer="file.type">
+                                        <x-parnas.form-group class="select align-items-center  flex-100">
+                                            <x-parnas.inputs.select class="select-base w-100" wire:model.defer="file.type">
                                                 <x-parnas.inputs.option value="{{ null }}">انتخاب نوع
                                                 </x-parnas.inputs.option>
                                                 <x-parnas.inputs.option value="1">عکس شاخص</x-parnas.inputs.option>
@@ -551,7 +551,7 @@
                                     </div>
 
                                     <ul class="list-unstyled mt-3 list-inline">
-                                        <li class="f-12 f-bold mb-5 file-title">
+                                        <li class="f-12 f-bold mb-5 title-bold">
                                             عکس های شاخص
                                         </li>
                                         @foreach ($files->where('type', 1) as $key => $_file)
@@ -610,7 +610,7 @@
                                         @endforeach
                                     </ul>
 
-                                    <li class="f-12 f-bold mb-5 file-title">
+                                    <li class="f-12 f-bold mb-5 title-bold">
                                         گالری
                                     </li>
                                     <ul class="list-unstyled list-inline parent-images-gallery">
@@ -673,7 +673,7 @@
                                     </ul>
 
                                     <ul class="list-unstyled list-inline">
-                                        <li class="f-12 f-bold mb-5 file-title">
+                                        <li class="f-12 f-bold mb-5 title-bold">
                                             فایل ها
                                         </li>
                                         @foreach ($files->where('type', 3) as $key => $_file)

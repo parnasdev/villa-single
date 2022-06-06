@@ -6624,3 +6624,20 @@ main {
   border-radius: 4px;
   top: 4px;
 }
+
+.title-bold {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.select-base {
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.card-header {
+  width: 99% !important;
+  margin: 10px 6px 0 0;
+  border: 1px solid #dbdbdb;
+}

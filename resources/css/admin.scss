@@ -1,6 +1,7 @@
 @import "./files/bootstrap.rtl.min.css";
 @import "./files/fontiran.css";
 @import "./files/all.css";
+
 body {
     direction: rtl;
     font-family: IRANSans !important;
@@ -44,8 +45,7 @@ select {
     --white: #fff;
     --dark: #000;
     --light-color: #eee;
-    --box-shadow: 1px 1px 6px #eee;
-    ;
+    --box-shadow: 1px 1px 6px #eee;;
     --red-color: #CE2D2D;
 }
 
@@ -1014,7 +1014,7 @@ main {
         top: 20px;
         z-index: 3;
     }
-    #toggle:checked+#side-nav {
+    #toggle:checked + #side-nav {
         right: 0;
         z-index: 10;
     }
@@ -1029,6 +1029,7 @@ main {
     width: 90%;
     max-width: 90%;
     font-size: 15px;
+
     input {
         border: none;
         outline: none;
@@ -1511,21 +1512,25 @@ main {
 }
 
 .calenders .calender {
-    width: 100%!important;
+    width: 100% !important;
+
     .item-number-day {
-        height: 60px!important;
+        height: 60px !important;
     }
+
     .number {
-        font-size: 20px!important;
+        font-size: 20px !important;
         transform: translate(0, 12px);
     }
+
     .reserved {
-        top: -1px!important;
-        left: -27px!important;
-        height: 16px!important;
+        top: -1px !important;
+        left: -27px !important;
+        height: 16px !important;
     }
+
     .week-header label {
-        font-size: 13px!important;
+        font-size: 13px !important;
     }
 }
 
@@ -1612,9 +1617,11 @@ main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     label {
         margin: 10px 0;
     }
+
     input {
         height: 35px;
         border-radius: 4px;
@@ -1625,6 +1632,7 @@ main {
         font-size: 14px;
         padding: 0 8px;
     }
+
     select {
         height: 35px;
         border-radius: 4px;
@@ -1641,9 +1649,11 @@ main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     label {
         margin: 10px 0;
     }
+
     textarea {
         height: 100px;
         border-radius: 4px;
@@ -1730,7 +1740,8 @@ main {
 }
 
 //end reserve info styles
-.SubContent {}
+.SubContent {
+}
 
 .parent-priceManagement {
     width: 100%;
@@ -1738,10 +1749,12 @@ main {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+
     .right-priceManagement {
         width: 49%;
         padding: 10px;
     }
+
     .left-priceManagement {
         width: 49%;
         border: 1px solid $light-color-second;
@@ -1845,12 +1858,14 @@ main {
         border-radius: 4px;
         transform: scale(1);
         transition: all .1s .1s;
+
         .line-disabled {
             width: 100%;
             height: 2px;
             background: #cccccc;
             transform: rotate(-33deg) translate(-6px, 9px);
         }
+
         .text-notification {
             background-color: #a79a9a;
             width: 40px;
@@ -1863,12 +1878,14 @@ main {
             left: -13px;
             bottom: 12px;
         }
+
         .price {
             width: 100%;
             position: absolute;
             bottom: -4px;
             right: 0px;
         }
+
         .save-day {
             width: 100%;
             position: absolute;
@@ -1876,16 +1893,19 @@ main {
             right: -7px;
             transform: rotate(44deg);
             z-index: 10;
+
             .text-saveday {
                 background-color: #dddddd;
                 border-radius: 4px;
                 padding: 0 4px;
             }
         }
+
         &:hover {
             transform: scale(.9);
         }
     }
+
     .holiday {
         background-color: rgb(195, 54, 54);
         border-radius: 5px;
@@ -1911,55 +1931,66 @@ main {
         transform: scale(1);
     }
 }
+
 .file-title {
     font-weight: 600;
     padding-top: 10px;
     border-top: 1px solid #dbdbdb;
 }
-.parent-form-row{
+
+.parent-form-row {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     width: 100% !important;
-    .item-inp{
+
+    .item-inp {
         width: 12% !important;
-        label{
+
+        label {
             font-size: 13px;
             font-weight: 600;
         }
-        input{
+
+        input {
             border: 1px solid $light-color;
             outline: none;
             border-radius: 4px;
         }
-        select{
+
+        select {
             border: 1px solid $light-color;
             outline: none;
             border-radius: 4px;
         }
     }
 }
-.parent-images-gallery{
+
+.parent-images-gallery {
     width: 100%;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .list-inline-item{
+
+    .list-inline-item {
         width: 47%;
         margin-top: 15px;
     }
-    .img-gallery-admin{
+
+    .img-gallery-admin {
         position: relative;
         width: 100%;
-        img{
+
+        img {
             width: 100%;
             height: 110px;
             border-radius: 10px;
         }
     }
-    .btn-delete-imgs{
+
+    .btn-delete-imgs {
         position: absolute !important;
         left: 4px;
         outline: none;
@@ -1969,23 +2000,26 @@ main {
     }
 }
 
-.img-gallery-admin-top{
+.img-gallery-admin-top {
     width: 100%;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: relative;
-    img{
+
+    img {
         width: 100% !important;
         height: 180px !important;
         border-radius: 10px;
     }
-    .list-inline-item{
+
+    .list-inline-item {
         width: 100%;
         margin-top: 15px;
     }
-    .btn-delete-imgs{
+
+    .btn-delete-imgs {
         position: absolute !important;
         left: 4px;
         outline: none;
@@ -1995,3 +2029,19 @@ main {
     }
 }
 
+.title-bold {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.select-base {
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+.card-header {
+    width: 99% !important;
+    margin: 10px 6px 0 0;
+    border: 1px solid #dbdbdb;
+}
