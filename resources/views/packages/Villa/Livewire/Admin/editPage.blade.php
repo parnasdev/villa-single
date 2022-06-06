@@ -13,43 +13,43 @@
                                 <div class="item-villa">
                                     <label for="">نام اقامتگاه</label>
                                     <x-parnas.inputs.text wire:model.defer="residence.title" type="text"
-                                        placeholder="مثلا :ویلای استخردار متل قو"></x-parnas.inputs.text>
+                                                          placeholder="مثلا :ویلای استخردار متل قو"></x-parnas.inputs.text>
                                     @error('residence.title')
-                                        <p class="text-danger">{{ $message }}</p>
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="item-villa">
                                     <label for="">شماره همراه سرپرست</label>
                                     <input type="text" wire:model.defer="residence.mobile"
-                                        placeholder="تلفن تماس مالک اقامتگاه" />
+                                           placeholder="تلفن تماس مالک اقامتگاه"/>
                                     @error('residence.mobile')
-                                        <p class="text-danger">{{ $message }}</p>
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="item-villa">
                                     <label for="">استان ها</label>
                                     <select class="valid col-xl-4 col-lg-4 col-12 me-2" id="Capacity"
-                                        wire:model="residence.province_id" name="Capacity">
+                                            wire:model="residence.province_id" name="Capacity">
                                         @foreach ($provinces as $p)
                                             <option value="{{ $p->id }}">{{ $p->title }}</option>
                                         @endforeach
 
                                     </select>
                                     @error('residence.province_id')
-                                        <p>{{ $message }}</p>
+                                    <p>{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="item-villa">
                                     <label for="">شهر ها</label>
                                     <select class="valid col-xl-4 col-lg-4 col-12" id="Capacity"
-                                        wire:model="residence.city_id" name="Capacity">
+                                            wire:model="residence.city_id" name="Capacity">
                                         @foreach ($cities as $c)
                                             <option value="{{ $c->id }}">{{ $c->title }}</option>
                                         @endforeach
 
                                     </select>
                                     @error('residence.city_id')
-                                        <p>{{ $message }}</p>
+                                    <p>{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
@@ -57,19 +57,21 @@
                         <div class="w-100 d-flex justify-content-between">
                             <div class="textarea-box">
                                 <label for="">توضیحات</label>
-                                <textarea name="" wire:model.defer="residence.description" class="border w-100 description text-justify" id=""
-                                    placeholder="توضیحات اقامتگاه ( حداکثر 150 کارکتر ) "></textarea>
+                                <textarea name="" wire:model.defer="residence.description"
+                                          class="border w-100 description text-justify" id=""
+                                          placeholder="توضیحات اقامتگاه ( حداکثر 150 کارکتر ) "></textarea>
                                 @error('residence.description')
-                                    <p class="text-danger">{{ $message }}</p>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
 
                             </div>
                             <div class="textarea-box">
                                 <label for="">قوانین خود را تایپ کنید</label>
-                                <textarea name="" wire:model.defer="residence.rules.text" class="border w-100 description text-justify" id=""
-                                    placeholder="قوانین اقامتگاه ( حداکثر 150 کارکتر ) "></textarea>
+                                <textarea name="" wire:model.defer="residence.rules.text"
+                                          class="border w-100 description text-justify" id=""
+                                          placeholder="قوانین اقامتگاه ( حداکثر 150 کارکتر ) "></textarea>
                                 @error('residence.rules.text')
-                                    <p class="text-danger">{{ $message }}</p>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
 
                             </div>
@@ -85,7 +87,7 @@
                             <div class="item-villa">
                                 <label for="">نوع ویلا</label>
                                 <select class="valid col-xl-4 col-lg-4 col-12 me-2" id="Capacity"
-                                    wire:model="residence.specifications.type" name="Capacity">
+                                        wire:model="residence.specifications.type" name="Capacity">
                                     <option value="null">-</option>
                                     @foreach (collect(config('vila.types')) as $type)
                                         <option value="{{ $type['id'] }}">{{ $type['title'] }}</option>
@@ -93,14 +95,14 @@
 
                                 </select>
                                 @error('residence.specifications.type')
-                                    <p class="text-danger">{{ $message }}</p>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="item-villa">
                                 <label for="">موقعیت</label>
                                 <input type="text" wire:model="residence.specifications.location">
                                 @error('residence.specifications.location')
-                                    <p class="text-danger">{{ $message }}</p>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
 
@@ -111,10 +113,11 @@
 
 
                                 <div class="col-lg-12 col-md-12 mt-1 p-1">
-                                    <textarea name="" class="border w-100" id="" wire:model.defer="residence.address" rows="5"
-                                        placeholder="آدرس کامل اقامتگاه ( آمل-خیابان 1- کوچه 2 -پلاک 110)"></textarea>
+                                    <textarea name="" class="border w-100" id="" wire:model.defer="residence.address"
+                                              rows="5"
+                                              placeholder="آدرس کامل اقامتگاه ( آمل-خیابان 1- کوچه 2 -پلاک 110)"></textarea>
                                     @error('residence.address')
-                                        <p class="text-danger">{{ $message }}</p>
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
 
                                 </div>
@@ -130,41 +133,42 @@
                             <div class="SubContent d-flex flex-column align-items-start p-2">
                                 <form class="form-row">
                                     <div class="col-lg-12 col-12 d-flex flex-column align-items-start Topic1 mb-1 mx-2">
-                                        <div class="TopicIcon mx-2"><i class="fa fa-archway me-2"></i></div>
-                                        <div class="SubTopic d-flex w-100">
+                                        <div class="SubTopic parent-form-row d-flex w-100">
                                             <div
-                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters">
+                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters item-inp">
                                                 <div class="p-1">
                                                     <label>متراژ زمین</label>
                                                 </div>
                                                 <div class="w-100 p-1">
-                                                    <input type="number" min="0" wire:model.defer="residence.land_area" />
+                                                    <input type="number" min="0"
+                                                           wire:model.defer="residence.land_area"/>
                                                 </div>
                                                 @error('residence.land_rea')
-                                                    <p class="text-danger">{{ $message }}</p>
+                                                <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div
-                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters">
+                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters item-inp">
                                                 <div class="p-1">
                                                     <label>متراژ بنا</label>
                                                 </div>
                                                 <div class="w-100 p-1">
-                                                    <input type="number" min="0" wire:model.defer="residence.building_area" />
+                                                    <input type="number" min="0"
+                                                           wire:model.defer="residence.building_area"/>
                                                     @error('residence.building_area')
-                                                        <p class="text-danger">{{ $message }}</p>
+                                                    <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                             </div>
                                             <div
-                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters">
+                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters item-inp">
                                                 <div class="p-1">
                                                     <label>تعداد تشک</label>
                                                 </div>
                                                 <div class="w-100 p-1">
 
                                                     <select class="w-100" name="" id=""
-                                                        wire:model.defer="residence.mattress">
+                                                            wire:model.defer="residence.mattress">
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -177,22 +181,17 @@
                                                     </select>
                                                 </div>
                                                 @error('residence.mattress')
-                                                    <p class="text-danger">{{ $message }}</p>
+                                                <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-12 d-flex flex-column align-items-start Topic1 mb-1 mx-2">
-                                        <div class="TopicIcon mx-2"><i class="fa fa-users"></i></div>
-                                        <div class="SubTopic d-flex flex-wrap w-100">
                                             <div
-                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters">
+                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters item-inp">
                                                 <div class=" p-1">
                                                     <label>ظرفیت</label>
                                                 </div>
                                                 <div class="w-100 p-1">
                                                     <select class="valid w-100" id="Capacity"
-                                                        wire:model.defer="residence.capacity" name="Capacity">
+                                                            wire:model.defer="residence.capacity" name="Capacity">
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -225,18 +224,18 @@
                                                         <option value="30">30</option>
                                                     </select>
                                                     @error('residence.capacity')
-                                                        <p class="text-danger">{{ $message }}</p>
+                                                    <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                             </div>
                                             <div
-                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters">
+                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters item-inp">
                                                 <div class="p-1">
                                                     <label>حداکثر ظرفیت</label>
                                                 </div>
                                                 <div class="w-100 p-1">
                                                     <select class="valid w-100" id="Capacity"
-                                                        wire:model.defer="residence.maxCapacity" name="Capacity">
+                                                            wire:model.defer="residence.maxCapacity" name="Capacity">
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -269,19 +268,19 @@
                                                         <option value="30">30</option>
                                                     </select>
                                                     @error('residence.maxCapacity')
-                                                        <p class="text-danger">{{ $message }}</p>
+                                                    <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                             </div>
                                             <div
-                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters">
+                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters item-inp">
                                                 <div class="p-1">
                                                     <label>تخت ۱ نفره</label>
                                                 </div>
                                                 <div class="w-100 p-1">
 
                                                     <select class="w-100" name="" id=""
-                                                        wire:model.defer="residence.singleBed">
+                                                            wire:model.defer="residence.singleBed">
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -294,18 +293,18 @@
                                                     </select>
                                                 </div>
                                                 @error('residence.singleBed')
-                                                    <p class="text-danger">{{ $message }}</p>
+                                                <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div
-                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters">
+                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters item-inp">
                                                 <div class="p-1">
                                                     <label>تخت 2 نفره</label>
                                                 </div>
                                                 <div class="w-100 p-1">
 
                                                     <select class="w-100" name="" id=""
-                                                        wire:model.defer="residence.twinBed">
+                                                            wire:model.defer="residence.twinBed">
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -318,22 +317,17 @@
                                                     </select>
                                                 </div>
                                                 @error('residence.twinBed')
-                                                    <p class="text-danger">{{ $message }}</p>
+                                                <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-12 d-flex flex-column align-items-start Topic1 mb-1 mx-2">
-                                        <div class="TopicIcon mx-2"><i class="fa fa-bed pr-2"></i></div>
-                                        <div class="SubTopic w-100">
                                             <div
-                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters">
+                                                class="col-xl-3 col-lg-3 d-flex flex-column align-items-start no-gutters item-inp">
                                                 <div class="p-1">
                                                     <label class="ms-2">تعداد اتاق</label>
                                                 </div>
                                                 <div class="w-100 p-1">
                                                     <select class="valid w-100" id="Rooms"
-                                                        wire:model.defer="residence.room_count" name="Rooms">
+                                                            wire:model.defer="residence.room_count" name="Rooms">
                                                         <option>0</option>
                                                         <option>1</option>
                                                         <option>2</option>
@@ -347,7 +341,7 @@
                                                         <option>10</option>
                                                     </select>
                                                     @error('residence.room_count')
-                                                        <p class="text-danger">{{ $message }}</p>
+                                                    <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -365,16 +359,17 @@
                             </div>
                             <div class="SubContent d-flex align-items-center p-2">
                                 @foreach (collect(config('vila.views')) as $view)
-                                    <div class="d-flex align-items-center justify-content-start col-xl-3 col-lg-3 col-6">
-                                        <label for="ff{{ $view['title'] }}">{{ $view['title'] }}</label>
+                                    <div
+                                        class="d-flex align-items-center justify-content-start col-xl-3 col-lg-3 col-6">
                                         <input type="checkbox" name="ff{{ $view['id'] }}"
-                                            wire:model="residence.specifications.view" value="{{ $view['title'] }}"
-                                            id="ff{{ $view['title'] }}"  style="width: 30% !important">
+                                               wire:model="residence.specifications.view" value="{{ $view['title'] }}"
+                                               id="ff{{ $view['title'] }}" style="width: 30% !important">
+                                        <label for="ff{{ $view['title'] }}">{{ $view['title'] }}</label>
                                     </div>
                                 @endforeach
                             </div>
                             @error('residence.specifications.view')
-                                <p class="text-danger">{{ $message }}</p>
+                            <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -385,11 +380,14 @@
                             </div>
                             <div class="SubContent d-flex flex-wrap p-2">
                                 @foreach (collect(config('vila.facilities')) as $faci)
-                                    <div class="d-flex align-items-center justify-content-start col-xl-3 col-lg-3 col-6 mb-4">
+                                    <div
+                                        class="d-flex align-items-center justify-content-start col-xl-3 col-lg-3 col-6 mb-4">
+                                        <input style="width: 15% !important;" type="checkbox"
+                                               class="input-checkmarkData"
+                                               name="ff{{ $faci['id'] }}"
+                                               wire:model="residence.specifications.facilities"
+                                               value="{{ $faci['id'] }}" id="ff{{ $faci['id'] }}">
                                         <label for="ff{{ $faci['id'] }}">{{ $faci['title'] }}</label>
-                                        <input type="checkbox" class="input-checkmarkData"
-                                            name="ff{{ $faci['id'] }}" wire:model="residence.specifications.facilities"
-                                            value="{{ $faci['id'] }}" id="ff{{ $faci['id'] }}">
                                     </div>
                                 @endforeach
                             </div>
@@ -401,7 +399,7 @@
                                 <h6>با انتخاب تصاویر مناسب نمایش خوبی از اقامتگاهتان داشته باشید</h6>
                             </div>
                             <div class="SubContent p-2">
-                               
+
                             </div>
                         </div>
                     </div>
@@ -420,7 +418,7 @@
                                         <div class="col-md-6 my-2 mx-2">
                                             <x-parnas.form-group class="input-group input-group-sm">
                                                 <x-parnas.inputs.select class="form-select"
-                                                    wire:model.defer="residence.status_id">
+                                                                        wire:model.defer="residence.status_id">
                                                     <x-parnas.inputs.option value="{{ null }}">
                                                         -
                                                     </x-parnas.inputs.option>
@@ -433,7 +431,7 @@
 
                                             </x-parnas.form-group>
                                             @error('residence.status_id')
-                                                <p class="text-danger">{{ $message }}</p>
+                                            <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
 
@@ -450,7 +448,7 @@
                                         <div class="col-md-6 my-2 mx-2">
                                             <x-parnas.form-group class="input-group input-group-sm">
                                                 <x-parnas.inputs.select class="form-select"
-                                                    wire:model.defer="residence.specifications.paymentType">
+                                                                        wire:model.defer="residence.specifications.paymentType">
                                                     <x-parnas.inputs.option value="{{ null }}">
                                                         انتخاب کنید
                                                     </x-parnas.inputs.option>
@@ -464,7 +462,7 @@
 
                                             </x-parnas.form-group>
                                             @error('eq.specifications.paymentType')
-                                                <p class="text-danger">{{ $message }}</p>
+                                            <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
@@ -481,10 +479,10 @@
                             <div class="row no-gutters">
                                 <div class="box-design bg-white p-7">
                                     <div class="pl-8 mb-5">
-                                
+
                                         <x-parnas.inputs.file :file="$file['url']" model="file.url">
                                             @error('file.url')
-                                                <p class="text-danger f-12 pt-7 m-left-auto alert-invalid">{{ $message }}</p>
+                                            <p class="text-danger f-12 pt-7 m-left-auto alert-invalid">{{ $message }}</p>
                                             @enderror
                                         </x-parnas.inputs.file>
                                     </div>
@@ -499,14 +497,16 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <x-parnas.inputs.text class="form-control mt-3 w-100 form-control-sm item-villa input" id="alt"
-                                            placeholder="متن برای جایگزین تصویر" wire:model.defer="file.alt" />
+                                        <x-parnas.inputs.text
+                                            class="form-control mt-3 w-100 form-control-sm item-villa input" id="alt"
+                                            placeholder="متن برای جایگزین تصویر" wire:model.defer="file.alt"/>
                                         @error('file.alt')
-                                            <p class="text-danger f-12 pt-7 m-left-auto alert-invalid">{{ $message }}</p>
+                                        <p class="text-danger f-12 pt-7 m-left-auto alert-invalid">{{ $message }}</p>
                                         @enderror
                                     </x-parnas.form-group>
                                     <div>
-                                        <div class="d-flex justify-content-start m-left-auto mt-2 pos-relative pr-10 pb-3">
+                                        <div
+                                            class="d-flex justify-content-start m-left-auto mt-2 pos-relative pr-10 pb-3">
                                             <label class="d-flex f-12 text-63">
                                                 نوع تصویر
                                                 <div class="rx-title title-input pb-10">
@@ -517,7 +517,7 @@
                                             </label>
                                         </div>
                                         <x-parnas.form-group class="select align-items-center flex-100">
-                                            <x-parnas.inputs.select class="w-100"  wire:model.defer="file.type">
+                                            <x-parnas.inputs.select class="w-100" wire:model.defer="file.type">
                                                 <x-parnas.inputs.option value="{{ null }}">انتخاب نوع
                                                 </x-parnas.inputs.option>
                                                 <x-parnas.inputs.option value="1">عکس شاخص</x-parnas.inputs.option>
@@ -526,25 +526,30 @@
                                                 <x-parnas.inputs.option value="4">ویدیو شاخص</x-parnas.inputs.option>
                                             </x-parnas.inputs.select>
                                             @error('file.type')
-                                                <p class="text-danger f-12 pt-7 m-left-auto alert-invalid">{{ $message }}</p>
+                                            <p class="text-danger f-12 pt-7 m-left-auto alert-invalid">{{ $message }}</p>
                                             @enderror
                                         </x-parnas.form-group>
                                     </div>
-                                    <x-parnas.form-group class="flex-100  w-100  mt-3 c-btn justify-content-between mt-30">
-                                        <x-parnas.buttons.button class="flex-48 btn bg-success text-white radius-5" type="button"
-                                            wire:click="upload" wire:loading.attr="disabled" wire:target="upload">
+                                    <x-parnas.form-group
+                                        class="flex-100  w-100  mt-3 c-btn justify-content-between mt-30">
+                                        <x-parnas.buttons.button class="flex-48 btn bg-success text-white radius-5"
+                                                                 type="button"
+                                                                 wire:click="upload" wire:loading.attr="disabled"
+                                                                 wire:target="upload">
                                             ثبت
                                         </x-parnas.buttons.button>
-                                        <x-parnas.buttons.button class="flex-48 btn bg-danger text-white radius-5" type="button"
-                                            wire:click="resetForm" wire:loading.attr="disabled" wire:target="resetForm">
+                                        <x-parnas.buttons.button class="flex-48 btn bg-danger text-white radius-5"
+                                                                 type="button"
+                                                                 wire:click="resetForm" wire:loading.attr="disabled"
+                                                                 wire:target="resetForm">
                                             لغو
                                         </x-parnas.buttons.button>
                                     </x-parnas.form-group>
-            
+
                                     <div>
                                         <div class="line-horizontal bg-orange"></div>
                                     </div>
-            
+
                                     <ul class="list-unstyled mt-3 list-inline">
                                         <li class="f-12 f-bold mb-5 file-title">
                                             عکس های شاخص
@@ -560,29 +565,34 @@
                                                 @endphp
                                                 @switch($fs)
                                                     @case(\Illuminate\Support\Str::startsWith($fs, 'image'))
+                                                    <div class="img-gallery-admin">
                                                         <img src="{{ $_file['url'] }}" width="80" alt="{{ $_file['alt'] }}">
+                                                        <x-parnas.buttons.button type="button" class="btn btn-sm btn-danger"
+                                                                                 wire:click="deleteFile({{ $key }})"
+                                                                                 wire:loading.attr="disabled"
+                                                                                 wire:target="deleteFile">
+                                                            <svg width="20" height="20" viewBox="0 0 31 31" fill="none"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M12.7852 19.2988L12.7852 15.4647" stroke="#fff"
+                                                                      stroke-width="2"
+                                                                      stroke-linecap="round"/>
+                                                                <path d="M17.8828 19.2988L17.8828 15.4647" stroke="#fff"
+                                                                      stroke-width="2"
+                                                                      stroke-linecap="round"/>
+                                                                <path
+                                                                    d="M3.85938 9.07617H26.8071V9.07617C25.0914 9.07617 24.2336 9.07617 23.6689 9.56799C23.5996 9.62832 23.5346 9.69336 23.4743 9.76264C22.9824 10.3273 22.9824 11.1851 22.9824 12.9008V21.6909C22.9824 23.5765 22.9824 24.5193 22.3967 25.1051C21.8109 25.6909 20.8681 25.6909 18.9824 25.6909H11.684C9.79837 25.6909 8.85556 25.6909 8.26977 25.1051C7.68399 24.5193 7.68399 23.5765 7.68399 21.6909V12.9008C7.68399 11.1851 7.68399 10.3273 7.19217 9.76264C7.13184 9.69336 7.0668 9.62832 6.99752 9.56799C6.43283 9.07617 5.57501 9.07617 3.85938 9.07617V9.07617Z"
+                                                                    stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                                                                <path
+                                                                    d="M12.8702 4.43653C13.0155 4.30065 13.3356 4.18058 13.7809 4.09494C14.2262 4.00931 14.7718 3.96289 15.3331 3.96289C15.8944 3.96289 16.44 4.00931 16.8853 4.09494C17.3306 4.18058 17.6507 4.30065 17.7959 4.43653"
+                                                                    stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                                                            </svg>
+                                                        </x-parnas.buttons.button>
+                                                    </div>
                                                     @break
-            
+
                                                     @default
-                                                        <a href="{{ $_file['url'] }}">فایل</a>
+                                                    <a href="{{ $_file['url'] }}">فایل</a>
                                                 @endswitch
-                                                <x-parnas.buttons.button type="button" class="btn btn-sm btn-danger"
-                                                    wire:click="deleteFile({{ $key }})" wire:loading.attr="disabled"
-                                                    wire:target="deleteFile">
-                                                    <svg width="20" height="20" viewBox="0 0 31 31" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M12.7852 19.2988L12.7852 15.4647" stroke="#fff" stroke-width="2"
-                                                            stroke-linecap="round" />
-                                                        <path d="M17.8828 19.2988L17.8828 15.4647" stroke="#fff" stroke-width="2"
-                                                            stroke-linecap="round" />
-                                                        <path
-                                                            d="M3.85938 9.07617H26.8071V9.07617C25.0914 9.07617 24.2336 9.07617 23.6689 9.56799C23.5996 9.62832 23.5346 9.69336 23.4743 9.76264C22.9824 10.3273 22.9824 11.1851 22.9824 12.9008V21.6909C22.9824 23.5765 22.9824 24.5193 22.3967 25.1051C21.8109 25.6909 20.8681 25.6909 18.9824 25.6909H11.684C9.79837 25.6909 8.85556 25.6909 8.26977 25.1051C7.68399 24.5193 7.68399 23.5765 7.68399 21.6909V12.9008C7.68399 11.1851 7.68399 10.3273 7.19217 9.76264C7.13184 9.69336 7.0668 9.62832 6.99752 9.56799C6.43283 9.07617 5.57501 9.07617 3.85938 9.07617V9.07617Z"
-                                                            stroke="#fff" stroke-width="2" stroke-linecap="round" />
-                                                        <path
-                                                            d="M12.8702 4.43653C13.0155 4.30065 13.3356 4.18058 13.7809 4.09494C14.2262 4.00931 14.7718 3.96289 15.3331 3.96289C15.8944 3.96289 16.44 4.00931 16.8853 4.09494C17.3306 4.18058 17.6507 4.30065 17.7959 4.43653"
-                                                            stroke="#fff" stroke-width="2" stroke-linecap="round" />
-                                                    </svg>
-                                                </x-parnas.buttons.button>
                                                 {{-- <x-parnas.buttons.button type="button" class="btn btn-sm btn-primary"
                                                     wire:click="editFile({{ $key }})" wire:loading.attr="disabled"
                                                     wire:target="deleteFile , editFile">
@@ -599,9 +609,8 @@
                                             </li>
                                         @endforeach
                                     </ul>
-            
-                               
-            
+
+
                                     <ul class="list-unstyled list-inline">
                                         <li class="f-12 f-bold mb-5 file-title">
                                             گالری
@@ -617,27 +626,30 @@
                                                 @endphp
                                                 @switch($fs)
                                                     @case(\Illuminate\Support\Str::startsWith($fs, 'image'))
-                                                        <img src="{{ $_file['url'] }}" width="80" alt="{{ $_file['alt'] }}">
+                                                    <img src="{{ $_file['url'] }}" width="80" alt="{{ $_file['alt'] }}">
                                                     @break
-            
+
                                                     @default
-                                                        <a href="{{ $_file['url'] }}">فایل</a>
+                                                    <a href="{{ $_file['url'] }}">فایل</a>
                                                 @endswitch
                                                 <x-parnas.buttons.button type="button" class="btn btn-sm btn-danger"
-                                                    wire:click="deleteFile({{ $key }})" wire:loading.attr="disabled"
-                                                    wire:target="deleteFile">
+                                                                         wire:click="deleteFile({{ $key }})"
+                                                                         wire:loading.attr="disabled"
+                                                                         wire:target="deleteFile">
                                                     <svg width="20" height="20" viewBox="0 0 31 31" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M12.7852 19.2988L12.7852 15.4647" stroke="#fff" stroke-width="2"
-                                                            stroke-linecap="round" />
-                                                        <path d="M17.8828 19.2988L17.8828 15.4647" stroke="#fff" stroke-width="2"
-                                                            stroke-linecap="round" />
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.7852 19.2988L12.7852 15.4647" stroke="#fff"
+                                                              stroke-width="2"
+                                                              stroke-linecap="round"/>
+                                                        <path d="M17.8828 19.2988L17.8828 15.4647" stroke="#fff"
+                                                              stroke-width="2"
+                                                              stroke-linecap="round"/>
                                                         <path
                                                             d="M3.85938 9.07617H26.8071V9.07617C25.0914 9.07617 24.2336 9.07617 23.6689 9.56799C23.5996 9.62832 23.5346 9.69336 23.4743 9.76264C22.9824 10.3273 22.9824 11.1851 22.9824 12.9008V21.6909C22.9824 23.5765 22.9824 24.5193 22.3967 25.1051C21.8109 25.6909 20.8681 25.6909 18.9824 25.6909H11.684C9.79837 25.6909 8.85556 25.6909 8.26977 25.1051C7.68399 24.5193 7.68399 23.5765 7.68399 21.6909V12.9008C7.68399 11.1851 7.68399 10.3273 7.19217 9.76264C7.13184 9.69336 7.0668 9.62832 6.99752 9.56799C6.43283 9.07617 5.57501 9.07617 3.85938 9.07617V9.07617Z"
-                                                            stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                                                            stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                                                         <path
                                                             d="M12.8702 4.43653C13.0155 4.30065 13.3356 4.18058 13.7809 4.09494C14.2262 4.00931 14.7718 3.96289 15.3331 3.96289C15.8944 3.96289 16.44 4.00931 16.8853 4.09494C17.3306 4.18058 17.6507 4.30065 17.7959 4.43653"
-                                                            stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                                                            stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                                                     </svg>
                                                 </x-parnas.buttons.button>
                                                 {{-- <x-parnas.buttons.button type="button" class="btn btn-sm btn-primary"
@@ -656,7 +668,7 @@
                                             </li>
                                         @endforeach
                                     </ul>
-            
+
                                     <ul class="list-unstyled list-inline">
                                         <li class="f-12 f-bold mb-5 file-title">
                                             فایل ها
@@ -672,27 +684,30 @@
                                                 @endphp
                                                 @switch($fs)
                                                     @case(\Illuminate\Support\Str::startsWith($fs, 'image'))
-                                                        <img src="{{ $_file['url'] }}" width="80" alt="{{ $_file['alt'] }}">
+                                                    <img src="{{ $_file['url'] }}" width="80" alt="{{ $_file['alt'] }}">
                                                     @break
-            
+
                                                     @default
-                                                        <a href="{{ $_file['url'] }}">فایل</a>
+                                                    <a href="{{ $_file['url'] }}">فایل</a>
                                                 @endswitch
                                                 <x-parnas.buttons.button type="button" class="btn btn-sm btn-danger"
-                                                    wire:click="deleteFile({{ $key }})" wire:loading.attr="disabled"
-                                                    wire:target="deleteFile">
+                                                                         wire:click="deleteFile({{ $key }})"
+                                                                         wire:loading.attr="disabled"
+                                                                         wire:target="deleteFile">
                                                     <svg width="20" height="20" viewBox="0 0 31 31" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M12.7852 19.2988L12.7852 15.4647" stroke="#fff" stroke-width="2"
-                                                            stroke-linecap="round" />
-                                                        <path d="M17.8828 19.2988L17.8828 15.4647" stroke="#fff" stroke-width="2"
-                                                            stroke-linecap="round" />
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.7852 19.2988L12.7852 15.4647" stroke="#fff"
+                                                              stroke-width="2"
+                                                              stroke-linecap="round"/>
+                                                        <path d="M17.8828 19.2988L17.8828 15.4647" stroke="#fff"
+                                                              stroke-width="2"
+                                                              stroke-linecap="round"/>
                                                         <path
                                                             d="M3.85938 9.07617H26.8071V9.07617C25.0914 9.07617 24.2336 9.07617 23.6689 9.56799C23.5996 9.62832 23.5346 9.69336 23.4743 9.76264C22.9824 10.3273 22.9824 11.1851 22.9824 12.9008V21.6909C22.9824 23.5765 22.9824 24.5193 22.3967 25.1051C21.8109 25.6909 20.8681 25.6909 18.9824 25.6909H11.684C9.79837 25.6909 8.85556 25.6909 8.26977 25.1051C7.68399 24.5193 7.68399 23.5765 7.68399 21.6909V12.9008C7.68399 11.1851 7.68399 10.3273 7.19217 9.76264C7.13184 9.69336 7.0668 9.62832 6.99752 9.56799C6.43283 9.07617 5.57501 9.07617 3.85938 9.07617V9.07617Z"
-                                                            stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                                                            stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                                                         <path
                                                             d="M12.8702 4.43653C13.0155 4.30065 13.3356 4.18058 13.7809 4.09494C14.2262 4.00931 14.7718 3.96289 15.3331 3.96289C15.8944 3.96289 16.44 4.00931 16.8853 4.09494C17.3306 4.18058 17.6507 4.30065 17.7959 4.43653"
-                                                            stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                                                            stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                                                     </svg>
                                                 </x-parnas.buttons.button>
                                                 {{-- <x-parnas.buttons.button type="button" class="btn btn-sm btn-primary"
@@ -718,9 +733,9 @@
                             <div class="row d-flex justify-content-end m-1">
                                 <div class="p-1 col-lg-6 d-flex justify-content-center">
                                     <button type="submit"
-                                        class="w-100 SubmitButton text-center btn btn-success btn-sm">
-                                        ویرایش                
-                                                        </button>
+                                            class="w-100 SubmitButton text-center btn btn-success btn-sm">
+                                        ویرایش
+                                    </button>
                                 </div>
                                 <div class="p-1 col-lg-6 d-flex justify-content-center">
                                     <button class="w-100 CancelButton text-center btn btn-danger btn-sm">
