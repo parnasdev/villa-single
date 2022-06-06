@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xl-12 col-lg-12 d-flex justify-content-between">
-                <div class="card col-lg-9">
+                <div style="width: 74% !important;" class="card ">
                     <div class="card-header col-xl-12 col-lg-12 col-12">
                         <h6>اضافه کردن اقامتگاه</h6>
                     </div>
@@ -396,7 +396,7 @@
                     <div class="col-lg-12">
                         <div class="card Content">
                             <div class="card-header HeaderContent">
-                                <h6>با انتخاب تصاویر مناسب نمایش خوبی از اقامتگاهتان داشته باشید</h6>
+                                <h6 class="mb-0 text-sm">با انتخاب تصاویر مناسب نمایش خوبی از اقامتگاهتان داشته باشید</h6>
                             </div>
                             <div class="SubContent p-2">
 
@@ -412,7 +412,7 @@
                             <div class="Content">
                                 <div class="card HeaderContent">
                                     <div class="card-header">
-                                        <h6>وضعیت انتشار</h6>
+                                        <h6 class="mb-0">وضعیت انتشار</h6>
                                     </div>
                                     <div class="row no-gutters">
                                         <div class="col-md-6 my-2 mx-2">
@@ -441,7 +441,7 @@
                             <div class="Content mt-2">
                                 <div class="card HeaderContent">
                                     <div class="card-header">
-                                        <h6>وضعیت رزرو</h6>
+                                        <h6 class="mb-0">وضعیت رزرو</h6>
                                     </div>
                                     <div class="row no-gutters">
 
@@ -473,11 +473,11 @@
                         <div class="Content mt-2">
                             <div class="card no-gutters">
                                 <div class="card-header">
-                                    <h6>تصاویر</h6>
+                                    <h6 class="mb-0">تصاویر</h6>
                                 </div>
                             </div>
                             <div class="row no-gutters">
-                                <div class="box-design bg-white p-7">
+                                <div class="box-design mt-4 bg-white p-7">
                                     <div class="pl-8 mb-5">
 
                                         <x-parnas.inputs.file :file="$file['url']" model="file.url">

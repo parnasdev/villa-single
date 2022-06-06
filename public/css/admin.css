@@ -5228,6 +5228,7 @@ main {
   position: -webkit-sticky;
   position: sticky;
   top: 10px;
+  padding: 12px 0;
 }
 
 /*radio*/
@@ -6628,6 +6629,10 @@ main {
 .title-bold {
   font-size: 14px;
   font-weight: 600;
+}
+
+.text-sm {
+  font-size: 13px;
 }
 
 .select-base {

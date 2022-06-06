@@ -623,6 +623,7 @@ main {
 .sticky-status {
     position: sticky;
     top: 10px;
+    padding: 12px 0;
 }
 
 
@@ -2033,7 +2034,9 @@ main {
     font-size: 14px;
     font-weight: 600;
 }
-
+.text-sm{
+    font-size: 13px;
+}
 .select-base {
     border: 1px solid #dbdbdb;
     border-radius: 4px;
