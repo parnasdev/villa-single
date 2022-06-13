@@ -31,7 +31,7 @@
                 <td>{{$item->count}}</td>
                 <td>{{number_format($item->totalPrice)}}</td>
                 {{--                @dd(\Packages\Villa\src\Models\Residence::query()->where('id',$item->residence_id)->get('title')->first()->title)--}}
-                <td>{{ $item->residence->title}}</td>
+                <td>{{ $item->residence?->title}}</td>
                 <td>
                     {{ jdate($item->created_at)->format('Y-m-d H:i') }}
                 </td>

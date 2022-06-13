@@ -202,7 +202,6 @@
                     if(item === reserveDate) {
                         result= x.price.toString();
                     }
-
                 })
                 return result
             },

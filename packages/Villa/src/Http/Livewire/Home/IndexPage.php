@@ -32,7 +32,11 @@ class IndexPage extends Component
     public ?string $startDate = null;
 
     public ?string $endDate = null;
-
+    // public array $search = [
+    //     'city_code' => '',
+    //     'checkin' => null,
+    //     'checkout' => null,
+    // ];
 
 
     public function mount()

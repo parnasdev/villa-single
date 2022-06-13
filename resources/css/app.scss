@@ -13,6 +13,10 @@ $title-size: 20px;
 $transtions: 0.4s all;
 $box-shadow: #F0F0F0 0px 2px 8px 0px;
 $red-color: #D96060;
+$border-color: #E0E0E0;
+$radius-512: 512px;
+$radius-10: 10px;
+$radius-20: 20px;
 
 @font-face {
     font-family: dana;
@@ -97,6 +101,35 @@ a {
         color: $base-color;
         transition: $transtions;
     }
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
 }
 
 @mixin button-base-second() {
@@ -2297,6 +2330,7 @@ input {
 .date-reserved {
     background-color: #f4f4f4;
     cursor: no-drop;
+    color: #b3b3b3 !important;
 }
 
 .reserved {
@@ -3667,6 +3701,7 @@ form .inputs input {
             outline: none;
             position: relative;
             font-size: 14px;
+
             svg {
                 path {
                     fill: #347557;
@@ -4469,6 +4504,7 @@ button {
         }
     }
 
+
     .box-data {
         background-color: #fff;
         border-radius: 10px;
@@ -4700,6 +4736,237 @@ button {
         }
     }
 }
+
+.multiple-calender {
+
+    // calender
+    .calender {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 410px;
+        background-color: #ffffff;
+
+        .header-calender {
+            width: 100%;
+            padding: 10px 12px;
+            border-bottom: 2px solid $border-color;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .btn-active-tomorrow {
+                height: 33px;
+                border-radius: $radius-10;
+                background: $base-color;
+                color: $white-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: auto;
+                padding: 0 15px;
+                font-size: 13px;
+            }
+
+            .btn-submit-calender {
+                height: 33px;
+                border-radius: $radius-10;
+                background: $base-color-second;
+                color: $white-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: auto;
+                padding: 0 15px;
+                font-size: 13px;
+                margin-right: 15px;
+            }
+
+            .btn-close-calender {
+                width: 33px;
+                height: 33px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #dd1f1f;
+                border-radius: $radius-10;
+            }
+        }
+
+        .body-calender {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            .line-main-calender {
+                width: 2px;
+                height: 340px;
+                border-left: 2px dashed $border-color;
+            }
+
+            .month {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0 12px;
+
+                .month-header {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    padding: 10px;
+                    border-bottom: 2px dashed $border-color;
+                    position: relative;
+
+                    .icon-right-open {
+                        position: absolute;
+                        right: 0;
+                        font-size: 18px;
+                        color: $gray-color;
+                        font-weight: 600;
+                        margin-top: 4px;
+                        cursor: pointer;
+                        transition: $transtions;
+                    }
+
+                    .icon-left-open {
+                        position: absolute;
+                        left: 0;
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: $gray-color;
+                        margin-top: 4px;
+                        cursor: pointer;
+                        transition: $transtions;
+                    }
+                }
+
+                .month-body {
+                    width: 100%;
+                    height: 300px;
+                    margin-top: 12px;
+
+                    .weeks {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        .top {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                            width: 100%;
+
+                            span {
+                                color: $dark-color;
+                                font-family: 'Yekan-Bakh-xxx';
+                                font-size: 18px;
+                                width: 100%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                        }
+
+
+                        .bottom {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                            width: 100%;
+                            margin-top: 12px;
+
+                            .active-day {
+                                background-color: $base-color;
+                                color: $white-color;
+                            }
+
+                            .before-day {
+                                position: relative;
+
+                                &:after {
+                                    content: '';
+                                    position: absolute;
+                                    width: 1px;
+                                    height: 20px;
+                                    background-color: $gray-color;
+                                    transform: rotate(90deg);
+                                }
+                            }
+
+                            .active-today {
+                                border: 1px solid $base-color;
+                            }
+
+                            span {
+                                width: 100%;
+                                height: 50px;
+                                display: flex;
+                                align-items: center;
+                                transition: 0.5s all;
+                                position: relative;
+                                justify-content: center;
+                                cursor: pointer;
+                                margin-top: 1.5px;
+
+                                &:hover {
+                                    .tooltip {
+                                        display: block;
+                                        background-color:$base-color;
+                                        color: $white-color;
+                                        position:absolute;
+                                        top: -10px;
+                                        transition: 0.5s all;
+                                        padding: 3px 6px;
+                                        font-size: 11px;
+                                    }
+                                    background-color: $light-color;
+                                }
+                                .tooltip {
+                                    display: none;
+                                }
+                            }
+                        }
+
+                        .bottom:first-child {
+                            border-left: 2px solid $border-color;
+                        }
+                    }
+                }
+
+                .name-month {
+                    font-size: 19px;
+                    color: $base-color-second;
+                    font-family: 'Yekan-Bakh-xxx';
+                }
+
+            }
+
+
+        }
+    }
+
+    .active-between {
+        background-color: #f26f2185 !important;
+    }
+
+    .active-start {
+        border-radius: 0 512px 512px 0 !important;
+        background-color: $base-color;
+        color: $white-color;
+    }
+
+    .active-end {
+        border-radius: 512px 0 0 512px !important;
+        background-color: $base-color;
+        color: $white-color;
+    }
+
+}
+
 
 @import "./files/mobile.css";
 @import "./files/tablet.css";
