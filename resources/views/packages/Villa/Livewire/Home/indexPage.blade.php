@@ -182,23 +182,23 @@
 
     <section class="section-content">
         <div class="container">
-            <div class="card-headerdata box-data d-flex align-items-center">
-                <div class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
+            <div class="card-headerdata box-data d-flex align-items-center" x-data="{tabData:'one'}">
+                <a @click="tabData='four'" href="#data-one" class="c-head d-flex justify-content-center col-xl-1 col-lg-1 active-data">
                     <span>معرفی</span>
-                </div>
-                <div class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
+                </a>
+                <a @click="tabData='four'" href="#data-two" class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
                     <span>امکانات</span>
-                </div>
-                <div class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
+                </a>
+                <a @click="tabData='four'" href="#data-three" class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
                     <span>قوانین</span>
-                </div>
-                <div class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
+                </a>
+                <a @click="tabData='four'" href="#data-four" class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
                     <span>موقعیت مکانی</span>
-                </div>
+                </a>
             </div>
             <div class="-data d-flex flex-wrap justify-content-between align-items-start">
                 <div class="r-data">
-                    <div class="box-data px-3 py-4 mb-4">
+                    <div class="box-data px-3 py-4 mb-4" id="data-one">
                         <div class="title d-flex align-items-center">
                             <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24">
@@ -309,7 +309,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="box-data px-3 py-4 mb-4">
+                    <div class="box-data px-3 py-4 mb-4" id="data-two">
                         <div class="title d-flex align-items-center">
                             <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24">
@@ -356,7 +356,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box-data px-3 py-4 mb-4">
+                    <div class="box-data px-3 py-4 mb-4" id="data-two">
                         <div class="title d-flex align-items-center">
                             <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24">
@@ -420,7 +420,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box-data px-3 py-4 mb-4">
+                    <div class="box-data px-3 py-4 mb-4" id="data-three">
                         <div class="title d-flex align-items-center">
                             <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24">
@@ -451,7 +451,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="box-data px-3 py-4 mb-1">
+                    <div class="box-data px-3 py-4 mb-1" id="data-four">
                         <div class="title d-flex align-items-center">
                             <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24">
