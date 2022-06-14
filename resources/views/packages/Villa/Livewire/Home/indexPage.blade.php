@@ -1,18 +1,9 @@
 <div x-data="{
-    calenders: @entangle('calenderData'),
-    month: @entangle('currentMonth'),
-    year: @entangle('currentYear'),
     dayIn: null,
     step: @entangle('step'),
     dayOut: null,
-    isLoading: false,
-    reserves: [],
-    datesSelected: @entangle('datesSelected'),
-    init() {
-        this.getCa()
-        this.getReserves();
-
-    },
+    coll:false,
+    init() {},
     nextStep() {
         if (this.datesSelected.length > 0) {
             this.step = 2;
@@ -23,113 +14,11 @@
     previoesStep() {
         this.step = 1
     },
-    getBetweenDatesSelected() {
-        $wire.getDates(this.dayIn, this.dayOut).then(result => {
-            this.datesSelected = JSON.parse(result);
-            this.checkReservedInDates();
-        });
-    },
-    checkReservedInDates() {
-        if (this.dayOut < this.dayIn) {
-            alert('تاریخ انتخابی نامعتبر است.');
-            this.dayIn = null;
-            this.dayOut = null;
-        } else {
-            for (let i = 0; i <= this.datesSelected.length; i++) {
-                if (this.checkIsReserve(this.datesSelected[i])) {
-                    this.dayOut = this.datesSelected[i];
-                    alert('بین روزهای انتخابی شما روز غیرقابل رزرو وجود دارد.')
-                    break;
-                }
-            }
-            $wire.getDates(this.dayIn, this.dayOut).then(result => {
-
-                this.datesSelected = JSON.parse(result);
-            });
-        }
-    },
-    getReserves() {
-        $wire.getAllReservations().then(result => {
-            this.reserves = result;
-        })
-    },
-    getCa() {
-        {{-- this.isLoading = true;
-        $wire.getCalender($wire.calendarRequest).then(result => {
-
-            this.calenders = JSON.parse(result);
-            console.log(this.calenders)
-            this.month = this.calenders.month;
-            this.year = this.calenders.year;
-            this.isLoading = false;
-        }) --}}
-    },
-    checkIsReserve(date) {
-        return this.reserves.includes(date);
-    },
-    itemClicked(data) {
-        $wire.itemClicked(JSON.stringify(data))
-    },
-    nextMonth() {
-        $wire.nextMonth().then(result => this.getCa())
-    },
-    previousMonth() {
-        $wire.previousMonth().then(result => this.getCa())
-    },
-    onItemClicked(dateItem = null) {
-        if (dateItem) {
-            this.datesSelected = [];
-            if (!this.dayIn && !this.dayOut) {
-                if (this.checkIsReserve(dateItem)) {
-                    alert('این تاریخ رزرو شده است');
-                } else {
-                    this.dayIn = dateItem
-                }
-            } else if (this.dayIn && !this.dayOut) {
-                if (dateItem == this.dayIn) {
-                    this.dayIn = null;
-                    this.dayOut = null;
-                } else {
-                    this.dayOut = dateItem;
-                    this.getBetweenDatesSelected();
-                }
-            } else {
-                if (this.checkIsReserve(dateItem)) {
-                    alert('این تاریخ رزرو شده است');
-                    this.dayIn = null;
-                    this.dayOut = null;
-                } else {
-                    this.dayIn = dateItem;
-                    this.dayOut = null;
-                }
-            }
-        } else {
-            alert('امکان رزرو در این تاریخ وجود ندارد.');
-        }
-    },
-    getDates(e) {
-        this.calenders = JSON.parse(e.detail);
-    },
-    isItemExistToSelected(item) {
-        return this.datesSelected.filter(x => x === item.dateEn)
-    },
-    findListItemIndex(item) {
-        return this.calenders.dates.findIndex(x => x.dateEn === item.dateEn);
-    },
-    getIsDaysGone(dateItem) {
-        return dateItem.status === 'Disabled' || dateItem.status === 'Hidden'
-    }
 }">
     <section class="section-content">
         <div class="container-fluid px-0">
             <div class="p-header col-xl-12 col-lg-12">
-                <div class="backface-drop">
-                    {{-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                        <path fill="#d7e2ea" fill-opacity="1"
-                            d="M0,0L60,48C120,96,240,192,360,202.7C480,213,600,139,720,133.3C840,128,960,192,1080,192C1200,192,1320,128,1380,96L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
-                        </path>
-                    </svg> --}}
-                </div>
+
                 <div class="title-head d-flex flex-column align-items-center">
                     <div style=" z-index:2;" class="d-flex">
                         <h1 class="text-white">{{ $residence->title }}</h1>
@@ -138,7 +27,7 @@
                             class="f-27 color-custom-base f-bold">{{ $residence->city()->first()?->title . ' , ' . $residence->province()->first()?->title }}</span>
                     </div>
                     <div class="btn-data col-xl-1 col-lg-1 col-5">
-                        <button class="w-100 bg-custom-base text-white px-3 py-3">
+                        <button class="w-100 bg-custom-base text-white px-3 py-3" @click="window.scrollTo(1500,1500)">
                             اجاره ویلا
                         </button>
                     </div>
@@ -156,23 +45,29 @@
         <div class="container">
             <div class="p-gallery">
                 <div class="title pb-4">
-                    <h3>ر{{ $residence->title }}</h3>
+                    <h3>{{ $residence->title }}</h3>
                 </div>
-                <div class="gallery-image d-flex flex-wrap justify-content-between align-items-start">
-                    <div class="l-gallery">
-                        <div class="image">
-                            <img src="{{ $files->first()?->url }}" alt="" />
+                <div class="w-100" x-data="{ swiper: null }" x-init="swiper = new Swiper($refs.container, {
+                    loop: false,
+                    slidesPerView: 1,
+                })">
+                    <div class="swiper w-100" x-ref="container">
+                        <div class="gallery-image swiper-wrapper">
+                            @foreach ($files as $key => $file)
+                                <div class="r-gallery swiper-slide">
+                                    <div class="image">
+                                        <img src="{{ $file->url }}" alt="" />
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                    <div class="r-gallery d-flex flex-wrap justify-content-between">
-                        @foreach ($files as $key => $file)
-                            @if ($key <= 1)
-                                <div class="image">
-                                    <img src="{{ $file->url }}" alt="" />
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
+
+                    <!-- swiper next and prev -->
+                    <button class="swiper-button-next" @click="swiper.slideNext()">
+                    </button>
+                    <button class="swiper-button-prev" @click="swiper.slidePrev()">
+                    </button>
                 </div>
             </div>
         </div>
@@ -182,17 +77,21 @@
 
     <section class="section-content">
         <div class="container">
-            <div class="card-headerdata box-data d-flex align-items-center" x-data="{tabData:'one'}">
-                <a @click="tabData='four'" href="#data-one" class="c-head d-flex justify-content-center col-xl-1 col-lg-1 active-data">
+            <div class="card-headerdata box-data d-flex align-items-center" x-data="{ tabData: 'one' }">
+                <a @click="tabData='four'" href="#data-one"
+                    class="c-head d-flex justify-content-center col-xl-1 col-lg-1 active-data">
                     <span>معرفی</span>
                 </a>
-                <a @click="tabData='four'" href="#data-two" class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
+                <a @click="tabData='four'" href="#data-two"
+                    class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
                     <span>امکانات</span>
                 </a>
-                <a @click="tabData='four'" href="#data-three" class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
+                <a @click="tabData='four'" href="#data-three"
+                    class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
                     <span>قوانین</span>
                 </a>
-                <a @click="tabData='four'" href="#data-four" class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
+                <a @click="tabData='four'" href="#data-four"
+                    class="c-head d-flex justify-content-center col-xl-1 col-lg-1">
                     <span>موقعیت مکانی</span>
                 </a>
             </div>
@@ -253,8 +152,8 @@
                         </div>
                         <div class="line-horizontal"></div>
                         <div class="multiple-calender">
-                            <x-parnas.inputs.home-date-picker :data="$this->calendarRequest" model1="search.checkin"
-                                model2="search.checkout" minDate="{{ jdate()->format('Y/m/d') }}" />
+                            <x-parnas.inputs.home-date-picker :data="$this->calendarRequest"
+                                minDate="{{ jdate()->format('Y/m/d') }}" />
                         </div>
                     </div>
                     <div class="box-data px-3 py-4 mb-4">
@@ -483,8 +382,107 @@
                     </div>
                 </div>
                 {{-- // calender location --}}
-              
-                
+                <div class="l-data box-data px-2 pt-2 pb-5">
+                    <div class="box-data">
+                        <div class="date-vila">
+                            <div class="date-start">
+                                <span>تاریخ شروع</span>
+                        
+                                <span>{{ count($datesSelected) > 0 ? jdate($datesSelected[0])->format('Y-m-d') : '---' }}</span>
+                            </div>
+                            <div class="date-exit">
+                                <span>تاریخ خروج</span>
+                                <span>{{ count($datesSelected) > 0 ? jdate($datesSelected[count($datesSelected) - 1])->format('Y-m-d') : '---' }}</span>
+                            </div>
+                        </div>
+                        <div class="day-selected">
+                            <h2>روزهای انتخابی</h2>
+                        </div>
+                        <div>
+                            <div @click="coll=!coll" class="price-day selected-day-list">
+                                <span>{{ count($datesSelected). 'شب' }}</span>
+    
+                                <strong>{{ number_format($this->getTotalPrice()) }}</strong>
+                            </div>
+                            <div style="display: none" x-show="coll">
+                                @foreach ($datesSelected as $dateItem)
+                                    <div class="price-day selected-day-list">
+                                        <span>{{ jdate($dateItem)->format('Y-m-d') }}</span>
+                                        @if ($loop->index === count($datesSelected) - 1)
+                                            <strong class="span-price-day">روز خروج</strong>
+                                        @else
+                                            <strong>{{ number_format($this->getPrice($dateItem)->first()->price) }}</strong>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                 
+                        @if ($this->getTotalAdditionalPrice() > 0)
+                            <div class="total-price">
+                                <span> هزینه نفر اضافه ({{ $additionalCount . 'نفر' }})</span>
+                                <strong>{{ number_format($this->getTotalAdditionalPrice()) }}</strong>
+                            </div>
+                        @endif
+                        <div class="total-price">
+                            <span>جمع کل {{ '(' . count($datesSelected). 'شب' . ')' }}</span>
+                            <strong>{{ number_format($this->getTotalPrice()) }}</strong>
+                        </div>
+                        @if ($step === 2)
+                            <form class="w-100 d-flex parent-form-info-villa">
+                                <div class="form-group">
+                                    <label for="name">نام سرپرست</label>
+                                    <input type="text" wire:model.defer="name" class="form-control" id="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="family">نام خانوادگی سرپرست</label>
+                                    <input type="text" wire:model.defer="family" class="form-control" id="family">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">شماره همراه</label>
+                                    <input type="text" wire:model.defer="phone" class="form-control" id="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">تعداد افراد</label>
+                                    <select name="" wire:model="count">
+                                        @foreach (range(1, $residence->maxCapacity) as $count)
+                                            <option value="{{ $count }}">
+                                                {{ $count }} نفر
+                                                @if ($count > $residence->capacity && collect($residence->specifications)->has('additionalPrice'))
+                                                    <span>(هر نفر اضافه
+                                                        {{ number_format($residence->specifications['additionalPrice']) . 'تومان' }})</span>
+                                                @endif
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </form>
+                        @endif
+
+                        @if ($step === 1)
+
+                            <button class="btn-reserve" wire:click="nextStep">
+                                ادامه
+                            </button>
+                        @else
+                            @if (collect($residence->specifications)->has('paymentType') && $residence->specifications['paymentType'] === '2')
+                                <button class="btn-reserve" wire:click="pay">
+                                    پرداخت
+                                </button>
+                            @else
+                                <button class="btn-reserve" wire:click="submit">
+                                    درخواست رزرو
+                                </button>
+                            @endif
+                            <button class="btn-reserve" @click="previoesStep()">
+                                ویرایش درخواست
+                            </button>
+                        @endif
+
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </section>

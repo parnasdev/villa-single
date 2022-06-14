@@ -12,9 +12,6 @@ use Packages\Villa\src\Models\ResidenceReserve;
 
 class IndexPage extends Component
 {
-    public int|null $currentMonth = null;
-    public int|null $currentYear = null;
-    public array $residenceData = [];
     public array $calendarRequest = [];
     public string $name = '';
     public string $family = '';
@@ -24,19 +21,9 @@ class IndexPage extends Component
     public $dayIn = null;
     public $dayOut = null;
     public array $datesSelected = [];
-    public $calenderData;
-    public $months = null;
     public $additionalCount = 0;
-    public string $citySelected = '';
     public $residence;
-    public ?string $startDate = null;
-
-    public ?string $endDate = null;
-    // public array $search = [
-    //     'city_code' => '',
-    //     'checkin' => null,
-    //     'checkout' => null,
-    // ];
+    protected $listeners = ['selectedDate', 'removeDateSelection'];
 
 
     public function mount()
@@ -69,7 +56,6 @@ class IndexPage extends Component
         $this->fillCalendarRequest();
         return view('Villa::Livewire.Home.indexPage', compact('province', 'city', 'files', 'thumbanil'));
     }
-
 
     public function getAllReservations()
     {
@@ -106,71 +92,19 @@ class IndexPage extends Component
                 ]
             );
         }
-        //        dd($this->calendarRequest);
-
     }
 
-
-    public function getCalender($data = [])
+    public function selectedDate($e)
     {
-        $req = [
-            'year' => $this->currentYear,
-            'month' => $this->currentMonth,
-            'minDate' => jdate()->format('Y-m-d'),
-            'maxDate' => null,
-            'format ' => 15,
-            'data' => $data
-        ];
-        return json_encode(apiService()->getCalender($req));
+        $this->datesSelected = $e[0];
     }
 
 
-    public function previousMonth()
-    {
-        if ($this->currentMonth === 1) {
-            $this->currentYear = $this->currentYear - 1;
-            $this->currentMonth = 12;
-        } else {
-            $this->currentMonth = $this->currentMonth - 1;
-        }
-    }
-
-    public function itemClicked($date)
-    {
-        $item = $this->data->firstWhere('id', $currentMonth ?? 1)['text'];
-    }
-
-    public function nextMonth()
-    {
-        if ($this->currentMonth === 12) {
-            $this->currentYear = $this->currentYear + 1;
-            $this->currentMonth = 1;
-        } else {
-            $this->currentMonth = $this->currentMonth + 1;
-        }
-    }
 
 
-    public function getDates($date1, $date2)
-    {
-        if ($date1 && $date2) {
-            $this->datesSelected = [];
-            $this->dayIn = $date1;
-            $this->dayOut = $date2;
 
-            $this->datesSelected = $this->getBetweenDates($this->dayIn, $this->dayOut);
-        }
-        return json_encode($this->datesSelected);
-    }
 
-    // public function getItemByDateEn($dateEn)
-    // {
-    //     foreach ($this->calenderData['dates'] as $item) {
-    //         if ($item['dateEn'] === $dateEn) {
-    //             return $item;
-    //         }
-    //     }
-    // }
+
 
 
     public function submit()
@@ -202,7 +136,10 @@ class IndexPage extends Component
     {
         return in_array($label, $this->residence->specifications['view']);
     }
-
+    function removeDateSelection()
+    {
+        $this->datesSelected = [];
+    }
 
     function removeSelection()
     {
@@ -219,11 +156,14 @@ class IndexPage extends Component
     {
         $total = 0;
         for ($i = 0; $i < count($this->datesSelected) - 1; $i++) {
-            // $total += $this->datesSelected[$i]['data'][0]['price'];
             $total += $this->getPrice($this->datesSelected[$i])[count($this->getPrice($this->datesSelected[$i])) - 1]['price'];
         }
-
         return $total + $this->getTotalAdditionalPrice();
+    }
+
+    public function getPrice($date)
+    {
+        return ResidenceDate::query()->where('date', $date)->get('price');
     }
 
     public function updated($name)
@@ -249,7 +189,6 @@ class IndexPage extends Component
     public function getBetweenDates($startDate, $endDate)
     {
         $rangArray = [];
-
         $startDate = strtotime($startDate);
         $endDate = strtotime($endDate);
 
@@ -272,10 +211,6 @@ class IndexPage extends Component
     }
 
 
-    public function getPrice($date)
-    {
-        return ResidenceDate::query()->where('date', $date)->get('price');
-    }
 
     public function checkIsReserve($date)
     {
