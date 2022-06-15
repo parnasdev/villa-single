@@ -4460,7 +4460,7 @@ button {
                 .image {
                     img {
                         width: 100%;
-                        height: 450px;
+                        height: 450multiple-calenderpx;
                         object-fit: cover;
                         border-radius: 15px;
                     }
@@ -4520,6 +4520,7 @@ button {
                 position: absolute;
                 right: -1px;
                 width: 100%;
+                z-index: 0;
                 display: flex;
                 justify-content: center;
                 content: url('/images/circle.svg');
@@ -4745,10 +4746,8 @@ button {
 
     // calender
     .calender {
-        position: absolute;
-        top: 0;
-        right: 0;
         width: 100%;
+        z-index: 100;
         height: 410px;
         background-color: #ffffff;
 
@@ -5024,6 +5023,301 @@ button {
 }
 
 }
+
+@media  only screen and (max-width: 1450px) {
+    .multiple-calender-popup .calender {
+        right: -30%!important;
+    }
+}
+.multiple-calender-popup {
+
+
+
+    // calender
+    .calender {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index:100;
+        width: 600px;
+        height: 410px;
+        background-color: #ffffff;
+
+
+
+        .header-calender {
+            width: 100%;
+            padding: 10px 12px;
+            border-bottom: 2px solid $border-color;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .btn-active-tomorrow {
+                height: 33px;
+                border-radius: $radius-10;
+                background: $base-color;
+                color: $white-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: auto;
+                padding: 0 15px;
+                font-size: 13px;
+            }
+
+            .btn-submit-calender {
+                height: 33px;
+                border-radius: $radius-10;
+                background: $base-color-second;
+                color: $white-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: auto;
+                padding: 0 15px;
+                font-size: 13px;
+                margin-right: 15px;
+            }
+
+            .btn-close-calender {
+                width: 33px;
+                height: 33px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #dd1f1f;
+                border-radius: $radius-10;
+            }
+        }
+
+        .body-calender {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            .line-main-calender {
+                width: 2px;
+                height: 340px;
+                border-left: 2px dashed $border-color;
+            }
+
+            .month {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0 12px;
+
+                .month-header {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    padding: 10px;
+                    border-bottom: 2px dashed $border-color;
+                    position: relative;
+
+                    .icon-right-open {
+                        position: absolute;
+                        right: 0;
+                        font-size: 18px;
+                        color: $gray-color;
+                        font-weight: 600;
+                        margin-top: 4px;
+                        cursor: pointer;
+                        transition: $transtions;
+                    }
+
+                    .icon-left-open {
+                        position: absolute;
+                        left: 0;
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: $gray-color;
+                        margin-top: 4px;
+                        cursor: pointer;
+                        transition: $transtions;
+                    }
+                }
+
+                .month-body {
+                    width: 100%;
+                    height: 300px;
+                    margin-top: 12px;
+
+                    .weeks {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        .top {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                            width: 100%;
+
+                            span {
+                                color: $dark-color;
+                                font-family: 'Yekan-Bakh-xxx';
+                                font-size: 18px;
+                                width: 100%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                        }
+
+
+                        .bottom {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                            width: 100%;
+                            margin-top: 12px;
+
+                            .active-day {
+                                background-color: $base-color;
+                                color: $white-color;
+                            }
+
+                            .before-day {
+                                position: relative;
+
+                                &:after {
+                                    content: '';
+                                    position: absolute;
+                                    width: 1px;
+                                    height: 20px;
+                                    background-color: $gray-color;
+                                    transform: rotate(36deg);
+                                }
+                            }
+
+                            .active-today {
+                                border: 1px solid $base-color;
+                                border-radius: 6px;
+                                position: relative;
+
+
+                                &:after {
+                                    position: absolute;
+                                    top: 4px;
+                                    right: 4px;
+                                    z-index: 10;
+                                    color: $base-color;
+                                    font-size: 40px;
+                                    content: '.';
+                                    animation: 1s circle forwards infinite;
+
+                                }
+                            }
+
+                            
+
+                            .active-start {
+                                border-radius: 0 512px 512px 0 !important;
+                                background-color: #c8541185!important;
+                                color: $white-color;
+                            }
+
+                            .active-end {
+                                border-radius: 512px 0 0 512px !important;
+                                background-color: #c8541185!important;
+                                color: $white-color;
+                            }
+                            .active-between {
+                                background-color: #f26f2185 !important;
+                            }
+
+                            @keyframes circle {
+                                0% {
+                                    opacity: 0;
+
+                                }
+
+                                100% {
+                                    opacity: 1;
+                                }
+                            }
+
+                            div {
+                                width: 100%;
+                                height: 50px;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                transition: 0.5s all;
+                                position: relative;
+                                justify-content: center;
+                                cursor: pointer;
+                                margin-top: 1.5px;
+
+                                .dateNum {
+                                    font-size: 12px;
+                                }
+
+                                &:hover {
+                                    .tooltips {
+                                        display: block !important;
+                                        background-color: $base-color;
+                                        color: $white-color;
+                                        position: absolute;
+                                        top: 0;
+                                        right: 0;
+                                        display: flex !important;
+                                        align-items: center;
+                                        justify-content: center;
+                                        height: 100%;
+                                        font-weight: 400;
+                                        width: 100%;
+                                        transition: 0.5s all;
+                                        padding: 3px 6px;
+                                        font-size: 12px;
+                                    }
+
+                                    background-color: $light-color;
+                                }
+
+                                .tooltips {
+                                    display: none;
+                                }
+                            }
+                        }
+
+                        .bottom:first-child {
+                            border-left: 2px solid $border-color;
+                        }
+                    }
+                }
+
+                .name-month {
+                    font-size: 15px;
+                    color: $base-color-second;
+                    font-family: 'Yekan-Bakh-xxx';
+                }
+
+            }
+
+
+        }
+    }
+
+.delete-select-btn {
+    display: flex;
+    background-color: #ff0000;
+    border-radius: 10px;
+    color: $white-color;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 8px;
+    span {
+        margin-right: 6px;
+    }
+}
+
+}
+
 
 
 @import "./files/mobile.css";

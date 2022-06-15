@@ -40,7 +40,6 @@
         </div>
     </section>
 
-
     <section class="section-content">
         <div class="container">
             <div class="p-gallery">
@@ -56,7 +55,7 @@
                             @foreach ($files as $key => $file)
                                 <div class="r-gallery swiper-slide">
                                     <div class="image">
-                                        <img src="{{ $file->url }}" alt="" />
+                                        <img height="500px" src="{{ $file->url }}" alt="" />
                                     </div>
                                 </div>
                             @endforeach
@@ -127,35 +126,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="box-data px-3 py-4 mb-1">
-                        <div class="title d-flex align-items-center">
-                            <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24">
-                                <path id="Path_1022" data-name="Path 1022"
-                                    d="M1,5.5a12.254,12.254,0,0,0,.2,2.553,2.311,2.311,0,0,0,.56,1.188,2.311,2.311,0,0,0,1.188.56A12.254,12.254,0,0,0,5.5,10a12.254,12.254,0,0,0,2.553-.2,2.311,2.311,0,0,0,1.188-.56A2.311,2.311,0,0,0,9.8,8.053,12.254,12.254,0,0,0,10,5.5a12.254,12.254,0,0,0-.2-2.553,2.311,2.311,0,0,0-.56-1.188A2.311,2.311,0,0,0,8.053,1.2,12.254,12.254,0,0,0,5.5,1a12.255,12.255,0,0,0-2.553.2,2.311,2.311,0,0,0-1.188.56A2.311,2.311,0,0,0,1.2,2.947,12.255,12.255,0,0,0,1,5.5Z"
-                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" />
-                                <path id="Path_1023" data-name="Path 1023"
-                                    d="M1,18.5a12.254,12.254,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.26,12.26,0,0,0,5.5,23a12.26,12.26,0,0,0,2.553-.2,2.312,2.312,0,0,0,1.188-.56,2.312,2.312,0,0,0,.56-1.188A12.254,12.254,0,0,0,10,18.5a12.254,12.254,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.26,12.26,0,0,0,5.5,14a12.26,12.26,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.254,12.254,0,0,0,1,18.5Z"
-                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" />
-                                <path id="Path_1024" data-name="Path 1024"
-                                    d="M14,5.5a12.26,12.26,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.254,12.254,0,0,0,18.5,10a12.254,12.254,0,0,0,2.553-.2,2.312,2.312,0,0,0,1.188-.56,2.312,2.312,0,0,0,.56-1.188A12.26,12.26,0,0,0,23,5.5a12.26,12.26,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.254,12.254,0,0,0,18.5,1a12.254,12.254,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.26,12.26,0,0,0,14,5.5Z"
-                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" />
-                                <path id="Path_1025" data-name="Path 1025"
-                                    d="M14,18.5a12.26,12.26,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.26,12.26,0,0,0,18.5,23a12.26,12.26,0,0,0,2.553-.2A1.942,1.942,0,0,0,22.8,21.053,12.26,12.26,0,0,0,23,18.5a12.26,12.26,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.26,12.26,0,0,0,18.5,14a12.26,12.26,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.26,12.26,0,0,0,14,18.5Z"
-                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" />
-                            </svg>
-                            <span class="f-20 f-bold ps-3">رزرو</span>
-                        </div>
-                        <div class="line-horizontal"></div>
-                        <div class="multiple-calender">
-                            <x-parnas.inputs.home-date-picker :data="$this->calendarRequest"
-                                minDate="{{ jdate()->format('Y/m/d') }}" />
-                        </div>
-                    </div>
+                
                     <div class="box-data px-3 py-4 mb-4">
                         <div class="title d-flex align-items-center">
                             <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -380,21 +351,45 @@
                             </p>
                         </div>
                     </div>
+                    <div class="box-data px-3 py-4 mb-1">
+                        <div class="title d-flex align-items-center">
+                            <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24">
+                                <path id="Path_1022" data-name="Path 1022"
+                                    d="M1,5.5a12.254,12.254,0,0,0,.2,2.553,2.311,2.311,0,0,0,.56,1.188,2.311,2.311,0,0,0,1.188.56A12.254,12.254,0,0,0,5.5,10a12.254,12.254,0,0,0,2.553-.2,2.311,2.311,0,0,0,1.188-.56A2.311,2.311,0,0,0,9.8,8.053,12.254,12.254,0,0,0,10,5.5a12.254,12.254,0,0,0-.2-2.553,2.311,2.311,0,0,0-.56-1.188A2.311,2.311,0,0,0,8.053,1.2,12.254,12.254,0,0,0,5.5,1a12.255,12.255,0,0,0-2.553.2,2.311,2.311,0,0,0-1.188.56A2.311,2.311,0,0,0,1.2,2.947,12.255,12.255,0,0,0,1,5.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_1023" data-name="Path 1023"
+                                    d="M1,18.5a12.254,12.254,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.26,12.26,0,0,0,5.5,23a12.26,12.26,0,0,0,2.553-.2,2.312,2.312,0,0,0,1.188-.56,2.312,2.312,0,0,0,.56-1.188A12.254,12.254,0,0,0,10,18.5a12.254,12.254,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.26,12.26,0,0,0,5.5,14a12.26,12.26,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.254,12.254,0,0,0,1,18.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_1024" data-name="Path 1024"
+                                    d="M14,5.5a12.26,12.26,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.254,12.254,0,0,0,18.5,10a12.254,12.254,0,0,0,2.553-.2,2.312,2.312,0,0,0,1.188-.56,2.312,2.312,0,0,0,.56-1.188A12.26,12.26,0,0,0,23,5.5a12.26,12.26,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.254,12.254,0,0,0,18.5,1a12.254,12.254,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.26,12.26,0,0,0,14,5.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_1025" data-name="Path 1025"
+                                    d="M14,18.5a12.26,12.26,0,0,0,.2,2.553,2.312,2.312,0,0,0,.56,1.188,2.312,2.312,0,0,0,1.188.56A12.26,12.26,0,0,0,18.5,23a12.26,12.26,0,0,0,2.553-.2A1.942,1.942,0,0,0,22.8,21.053,12.26,12.26,0,0,0,23,18.5a12.26,12.26,0,0,0-.2-2.553,2.312,2.312,0,0,0-.56-1.188,2.312,2.312,0,0,0-1.188-.56A12.26,12.26,0,0,0,18.5,14a12.26,12.26,0,0,0-2.553.2,2.312,2.312,0,0,0-1.188.56,2.312,2.312,0,0,0-.56,1.188A12.26,12.26,0,0,0,14,18.5Z"
+                                    fill="none" stroke="#f47e43" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </svg>
+                            <span class="f-20 f-bold ps-3">رزرو</span>
+                        </div>
+                        <div class="line-horizontal"></div>
+                        <div class="multiple-calender">
+                            <x-parnas.inputs.home-date-picker :data="$this->calendarRequest"
+                                model1="dayIn" model2="dayOut"
+                                minDate="{{ jdate()->format('Y/m/d') }}" />
+                        </div>
+                    </div>
                 </div>
                 {{-- // calender location --}}
                 <div class="l-data box-data px-2 pt-2 pb-5">
+                    <div class="multiple-calender-popup">
+                    <x-parnas.inputs.home-date-picker-popup :data="$this->calendarRequest"
+                        model1="dayIn" model2="dayOut"
+                        minDate="{{ jdate()->format('Y/m/d') }}" />
+                    </div>
                     <div class="box-data">
-                        <div class="date-vila">
-                            <div class="date-start">
-                                <span>تاریخ شروع</span>
-
-                                <span>{{ count($datesSelected) > 0 ? jdate($datesSelected[0])->format('Y-m-d') : '---' }}</span>
-                            </div>
-                            <div class="date-exit">
-                                <span>تاریخ خروج</span>
-                                <span>{{ count($datesSelected) > 0 ? jdate($datesSelected[count($datesSelected) - 1])->format('Y-m-d') : '---' }}</span>
-                            </div>
-                        </div>
                         <div class="day-selected">
                             <h2>روزهای انتخابی</h2>
                         </div>
@@ -487,3 +482,8 @@
         </div>
     </section>
 </div>
+@push('scripts')
+<script>
+    console.log(window.innerWidth);
+</script>
+@endpush

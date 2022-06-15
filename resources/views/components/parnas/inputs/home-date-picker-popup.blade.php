@@ -1,4 +1,4 @@
-@props(['model1', 'model2','data' => []])
+@props(['model1', 'model2', 'data' => []])
 <div class="date-search flex-between w-100 position-relative" x-data="{
     month1: null,
     month2: null,
@@ -89,6 +89,7 @@
         this.$watch('endDate', value => {
             if (value !== null) {
                 this.displayDate2 = moment(value).format(this.jFormat);
+                this.allDate = []
                 if (this.startDate && this.endDate) {
                     for (let i = this.getItemIndex(this.startDate); i <= this.getItemIndex(this
                             .endDate); i++) {
@@ -102,6 +103,8 @@
                         }
                     }
                 }
+
+
             }
         })
 
@@ -125,9 +128,9 @@
             this.year2 = +moment().format('jYYYY')
         }
 
+        {{-- set incomming selection --}}
+
         this.generateCalender();
-
-
 
     },
     changeMonth(num) {
@@ -423,36 +426,50 @@
     },
 
 }">
+    <div class="item-date" @click="show=!show">
+        <label for="">تاریخ ورود</label>
+        <span x-text="displayDate1"></span>
+    </div>
+    <div class="item-date" @click="show=!show">
+        <label for="">تاریخ ورود</label>
+        <span x-text="displayDate2"></span>
+    </div>
+    <div style="display: none" x-transition:enter="animated fadeInDown" x-transition:leave="animated fadeOutUp"
+        x-show="show" class="calender" @click.outside="show = false">
+        <div class="header-calender">
+            <div class="flex-start">
+                <span class="btn-active-tomorrow"
+                    x-text="'ورود '+ moment(startDate , format).locale('fa').format('jMMM jDD') +' - خروج '+moment(endDate , format).locale('fa').format('jMMM jDD')">
 
-    <div class="calender">
+                </span>
+                <a href="" @click.prevent="show = false" class="btn-submit-calender">
+                    تایید
+                </a>
+            </div>
 
+            <a @click.prevent="show=false" href="" class="btn-close-calender">
+                <svg version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512"
+                    style="enable-background:new 0 0 512 512;" xml:space="preserve" width="17" height="17">
+                    <g>
+                        <path fill="#fff"
+                            d="M170.698,448H72.757c-4.814-0.012-8.714-3.911-8.725-8.725V72.725c0.012-4.814,3.911-8.714,8.725-8.725h97.941   c17.673,0,32-14.327,32-32s-14.327-32-32-32H72.757C32.611,0.047,0.079,32.58,0.032,72.725v366.549   C0.079,479.42,32.611,511.953,72.757,512h97.941c17.673,0,32-14.327,32-32S188.371,448,170.698,448z" />
+                        <path fill="#fff"
+                            d="M483.914,188.117l-82.816-82.752c-12.501-12.495-32.764-12.49-45.259,0.011s-12.49,32.764,0.011,45.259l72.789,72.768   L138.698,224c-17.673,0-32,14.327-32,32s14.327,32,32,32l0,0l291.115-0.533l-73.963,73.963   c-12.042,12.936-11.317,33.184,1.618,45.226c12.295,11.445,31.346,11.436,43.63-0.021l82.752-82.752   c37.491-37.49,37.491-98.274,0.001-135.764c0,0-0.001-0.001-0.001-0.001L483.914,188.117z" />
+                    </g>
+                </svg>
+
+            </a>
+        </div>
         <div class="body-calender">
             <div class="month">
                 <div class="month-header">
-
-
-
-                    <button @click="changeMonth(-1)">قبلی</button>
+                    <i class="icon-right-open" @click="changeMonth(-1)"></i>
                     <h3 class="name-month" x-text="months.find(x => x.id === month1).value"></h3>
                     &nbsp;
                     <span x-text="year1 + (year2 > year1 ? ' - ' + year2 : '')"></span>
                     &nbsp;
                     <h3 class="name-month" x-text="months.find(x => x.id === month2).value"></h3>
-                    <button @click="changeMonth(1)">بعدی</button>
-
-
-                    <template x-if="allDate.length > 0">
-                        <div class="delete-select-btn" @click="deleteSelection()">
-                            <svg height="20" fill="#ffffff" viewBox="0 0 48 48" width="20">
-                                <path
-                                    d="M12 38c0 2.21 1.79 4 4 4h16c2.21 0 4-1.79 4-4V14H12v24zM38 8h-7l-2-2H19l-2 2h-7v4h28V8z" />
-                                <path d="M0 0h48v48H0z" fill="none" />
-                            </svg>
-                            <span>حذف انتخابی ها</span>
-                        </div>
-                    </template>
-
-                    {{-- <i class="icon-left-open" @click="changeMonth(1)"></i> --}}
+                    <i class="icon-left-open" @click="changeMonth(1)"></i>
                 </div>
                 <div class="month-body">
                     <div class="weeks">
@@ -475,6 +492,7 @@
                                 <span>پ</span>
                                 <span class="text-danger">ج</span>
                             </div>
+
                         </div>
                         <div class="parent-parent-body w-100 flex-between">
                             <div class="bottom">
@@ -567,5 +585,4 @@
             </div>
         </div>
     </div>
-
 </div>
