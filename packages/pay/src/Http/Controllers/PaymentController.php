@@ -20,7 +20,7 @@ class PaymentController extends Controller
     public function callbackurl(ResidenceReserve $reserve)
     {
         $message = null;
-        if ($reserve->status_id != getStatus('')) {
+        if ($reserve->status_id == getStatus('waitforpay')) {
             try {
                 $receipt = Payment::amount($reserve->totalPrice)->transactionId(request('Authority'))->verify();
                 $transaction = Transaction::query()->where('resnumber', request('Authority'))->first();
@@ -32,7 +32,7 @@ class PaymentController extends Controller
                     'status_id' => getStatus('successful'),
                 ]);
                 $reserve->update([
-                    'status_id' => getStatus('')
+                    'status_id' => getStatus('Approved')
                 ]);
             } catch (InvalidPaymentException $exception) {
                 $message = $exception->getMessage();
@@ -53,7 +53,8 @@ class PaymentController extends Controller
 
     public function purchase(ResidenceReserve $reserve)
     {
-        if ($reserve->status_id != getStatus('')) {
+        
+        if ($reserve->status_id != getStatus('waitforpay')) {
             return redirect('/');
         }
 
@@ -69,13 +70,14 @@ class PaymentController extends Controller
                         'amount' => $reserve->totalPrice,
                         'resnumber' => $transactionId,
                         'enter_port_at' => now(),
-                        'status_id' => getStatus(''),
+                        'status_id' => getStatus('waitforpay'),
                         'transactiontable_type' => get_class($reserve),
                         'transactiontable_id' => $reserve->id
                     ]);
                 }
             );
         } catch (PurchaseFailedException $exception) {
+
             $message = $exception->getMessage();
             return redirect('/');
         }

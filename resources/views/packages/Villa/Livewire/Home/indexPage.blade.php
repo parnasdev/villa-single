@@ -2,7 +2,7 @@
     dayIn: null,
     step: @entangle('step'),
     dayOut: null,
-    coll:false,
+    coll: false,
     init() {},
     nextStep() {
         if (this.datesSelected.length > 0) {
@@ -387,7 +387,7 @@
                         <div class="date-vila">
                             <div class="date-start">
                                 <span>تاریخ شروع</span>
-                        
+
                                 <span>{{ count($datesSelected) > 0 ? jdate($datesSelected[0])->format('Y-m-d') : '---' }}</span>
                             </div>
                             <div class="date-exit">
@@ -400,8 +400,8 @@
                         </div>
                         <div>
                             <div @click="coll=!coll" class="price-day selected-day-list">
-                                <span>{{ count($datesSelected). 'شب' }}</span>
-    
+                                <span>{{ count($datesSelected) . 'شب' }}</span>
+
                                 <strong>{{ number_format($this->getTotalPrice()) }}</strong>
                             </div>
                             <div style="display: none" x-show="coll">
@@ -417,7 +417,7 @@
                                 @endforeach
                             </div>
                         </div>
-                 
+
                         @if ($this->getTotalAdditionalPrice() > 0)
                             <div class="total-price">
                                 <span> هزینه نفر اضافه ({{ $additionalCount . 'نفر' }})</span>
@@ -425,63 +425,63 @@
                             </div>
                         @endif
                         <div class="total-price">
-                            <span>جمع کل {{ '(' . count($datesSelected). 'شب' . ')' }}</span>
+                            <span>جمع کل {{ '(' . count($datesSelected) . 'شب' . ')' }}</span>
                             <strong>{{ number_format($this->getTotalPrice()) }}</strong>
                         </div>
-                        @if ($step === 2)
-                            <form class="w-100 d-flex parent-form-info-villa">
-                                <div class="form-group">
-                                    <label for="name">نام سرپرست</label>
-                                    <input type="text" wire:model.defer="name" class="form-control" id="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="family">نام خانوادگی سرپرست</label>
-                                    <input type="text" wire:model.defer="family" class="form-control" id="family">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">شماره همراه</label>
-                                    <input type="text" wire:model.defer="phone" class="form-control" id="phone">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">تعداد افراد</label>
-                                    <select name="" wire:model="count">
-                                        @foreach (range(1, $residence->maxCapacity) as $count)
-                                            <option value="{{ $count }}">
-                                                {{ $count }} نفر
-                                                @if ($count > $residence->capacity && collect($residence->specifications)->has('additionalPrice'))
-                                                    <span>(هر نفر اضافه
-                                                        {{ number_format($residence->specifications['additionalPrice']) . 'تومان' }})</span>
-                                                @endif
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </form>
-                        @endif
-
-                        @if ($step === 1)
-
-                            <button class="btn-reserve" wire:click="nextStep">
-                                ادامه
-                            </button>
-                        @else
-                            @if (collect($residence->specifications)->has('paymentType') && $residence->specifications['paymentType'] === '2')
-                                <button class="btn-reserve" wire:click="pay">
-                                    پرداخت
-                                </button>
-                            @else
-                                <button class="btn-reserve" wire:click="submit">
-                                    درخواست رزرو
-                                </button>
-                            @endif
-                            <button class="btn-reserve" @click="previoesStep()">
-                                ویرایش درخواست
-                            </button>
-                        @endif
-
+                        @auth
+                        <button class="btn-reserve" @click.prevent="$dispatch('open-modal' , {name: 'reserve'})">
+                            ادامه
+                        </button>
+                        @endauth
+                  @guest
+                  <button class="btn-reserve" wire:click="checkAuth">
+                    ورود و ادامه
+                </button>
+                  @endguest
                     </div>
                 </div>
-
+                <x-parnas.home-modal name="reserve">
+                    <form wire:submit.prevent="submit" class="w-100 d-flex parent-form-info-villa">
+                        <div class="form-group">
+                            <label for="name">نام سرپرست</label>
+                            <input type="text" wire:model.defer="name" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="family">نام خانوادگی سرپرست</label>
+                            <input type="text" wire:model.defer="family" class="form-control" id="family">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">شماره همراه</label>
+                            <input type="text" wire:model.defer="phone" class="form-control" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">تعداد افراد</label>
+                            <select name="" wire:model="count">
+                                @foreach (range(1, $residence->maxCapacity) as $count)
+                                    <option value="{{ $count }}">
+                                        {{ $count }} نفر
+                                        @if ($count > $residence->capacity && collect($residence->specifications)->has('additionalPrice'))
+                                            <span>(هر نفر اضافه
+                                                {{ number_format($residence->specifications['additionalPrice']) . 'تومان' }})</span>
+                                        @endif
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @if (collect($residence->specifications)->has('paymentType') && $residence->specifications['paymentType'] === '2')
+                            <button class="btn-reserve">
+                                پرداخت
+                            </button>
+                            <button class="btn-reserve">
+                                پرداخت از کیف پول
+                            </button>
+                        @else
+                            <button class="btn-reserve">
+                                درخواست رزرو
+                            </button>
+                        @endif
+                    </form>
+                </x-parnas.home-modal>
 
             </div>
         </div>

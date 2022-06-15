@@ -13,9 +13,9 @@
                                         <div class="icon">
                                             <i class="icon-ok-1"></i>
                                         </div>
-                                        <h3 class="title-factor">سفارش شما با موفقیت انجام شد</h3>
+                                        <h3 class="title-factor">رزرو شما با موفقیت انجام شد</h3>
                                         <span
-                                            class="span-verify">پرداخت با موفقیت انجام شد. سفارش شما با موفقیت ثبت شد</span>
+                                            class="span-verify">پرداخت با موفقیت انجام شد. رزرو شما با موفقیت ثبت شد</span>
                                         <div class="code-order">
                                             <h2 class="title-code-order">کد پرداخت :</h2>
                                             <h2 class="text-code-order">{{ isset($transaction->details['referenceId']) ? $transaction->details['referenceId'] : '' }}</h2>
@@ -29,7 +29,7 @@
                                             <div class="payment">
                                                 <span class="title">روش پرداخت : </span>
                                                 <span
-                                                    class="text">پرداخت اینترنتی: {{ __('ports.'.$order->payment_type) }} </span>
+                                                    class="text">پرداخت اینترنتی: </span>
                                             </div>
                                             <div class="price">
                                                 <span class="title">قیمت نهایی : </span>
@@ -38,10 +38,6 @@
                                             </div>
                                         </div>
                                         <div class="button-parent">
-                                            <a href="/user/courses" class="btn-order">
-                                                <i class="icon-circle"></i>
-                                                <span>دوره ها</span>
-                                            </a>
                                             <a class="btn-home" href="/">
                                                 <i class="icon-circle"></i>
                                                 <span>صفحه اصلی</span>
@@ -59,7 +55,7 @@
                                         <div class="icon-unsuccess">
                                             <i class="icon-cancel-1"></i>
                                         </div>
-                                        <h3 class="title-factor">متاسفانه سفارش شما لغو شد</h3>
+                                        <h3 class="title-factor">متاسفانه رزرو شما لغو شد</h3>
                                         <span class="span-verify">چنانچه طی این فرایند مبلغی از حساب شما کسر شده است،طی 72 ساعت آینده به حساب شما باز خواهد گشت.</span>
                                         <div class="code-order">
                                             <h2 class="title-code-order">کد پرداخت :</h2>
@@ -74,7 +70,7 @@
                                             <div class="payment">
                                                 <span class="title">روش پرداخت : </span>
                                                 <span
-                                                    class="text">پرداخت اینترنتی: {{ __('ports.'.$order->payment_type) }} </span>
+                                                    class="text">پرداخت اینترنتی: </span>
                                             </div>
                                             <div class="price">
                                                 <span class="title">قیمت نهایی : </span>
@@ -83,10 +79,6 @@
                                             </div>
                                         </div>
                                         <div class="button-parent">
-                                            <a class="btn-order">
-                                                <i class="icon-circle"></i>
-                                                <span>جزییات سفارش</span>
-                                            </a>
                                             <a class="btn-home" href="/">
                                                 <i class="icon-circle"></i>
                                                 <span>صفحه اصلی</span>

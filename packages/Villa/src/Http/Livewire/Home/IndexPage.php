@@ -110,7 +110,7 @@ class IndexPage extends Component
     public function submit()
     {
         if (count($this->datesSelected) > 0) {
-            ResidenceReserve::query()->create([
+            $recidenceReserve = ResidenceReserve::query()->create([
                 'residence_id' => $this->residence->id,
                 'checkIn' => $this->datesSelected[0],
                 'checkOut' => $this->datesSelected[count($this->datesSelected) - 1],
@@ -120,12 +120,12 @@ class IndexPage extends Component
                 'count' => (int)$this->count,
                 'family' => $this->family,
                 'phone' => $this->phone,
-                'status_id' => 6,
+                'status_id' => getStatus('waitforpay'),
             ]);
             $this->fillCalendarRequest();
             $this->dispatchBrowserEvent('message', ['message' => 'درخواست رزرو شما ارسال شد تا تایید ادمین منتظر باشید', 'btnCText' => 'باشه',  'btnCAText' => 'بستن']);
             $this->removeSelection();
-            $this->dispatchBrowserEvent('send-data', $this->getCalender($this->calendarRequest));
+            return redirect(route('pay.purchase', ['reserve' => $recidenceReserve]));
         } else {
             dd('لطفا روزهای خود را انتخاب کنید.');
         }
@@ -218,13 +218,11 @@ class IndexPage extends Component
     }
 
 
-    public function nextStep()
+    public function checkAuth()
     {
-        if (auth()->user()) {
-            $this->step = 2;
-        } else {
+
             return redirect(route('login', ['referrer-url' => url('/')]));
-        }
+        
     }
 
     public function previoesStep()

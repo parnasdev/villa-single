@@ -29,7 +29,7 @@
                                             <div class="payment">
                                                 <span class="title">روش پرداخت : </span>
                                                 <span
-                                                    class="text">پرداخت اینترنتی: {{ __('ports.'.$order->payment_type) }} </span>
+                                                    class="text">پرداخت اینترنتی: </span>
                                             </div>
                                             <div class="price">
                                                 <span class="title">قیمت نهایی : </span>
@@ -74,7 +74,7 @@
                                             <div class="payment">
                                                 <span class="title">روش پرداخت : </span>
                                                 <span
-                                                    class="text">پرداخت اینترنتی: {{ __('ports.'.$order->payment_type) }} </span>
+                                                    class="text">پرداخت اینترنتی: </span>
                                             </div>
                                             <div class="price">
                                                 <span class="title">قیمت نهایی : </span>
