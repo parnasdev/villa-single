@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Admin\Posts;
 
 use App\Http\Extra\TableFunction;
-use App\Models\Post;
 use App\Models\Status;
 use Livewire\Component;
 use Livewire\WithPagination;

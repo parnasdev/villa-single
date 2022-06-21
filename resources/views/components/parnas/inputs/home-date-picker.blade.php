@@ -1,4 +1,4 @@
-@props(['model1', 'model2','data' => []])
+@props(['model1', 'model2', 'data' => []])
 <div class="date-search flex-between w-100 position-relative" x-data="{
     month1: null,
     month2: null,
@@ -64,8 +64,8 @@
         },
     ],
     calenderData: [],
-    startDate: @entangle($model1),
-    endDate: @entangle($model2),
+    startDate: @entangle($model1).defer,
+    endDate: @entangle($model2).defer,
     monthLength1: 0,
     monthLength2: 0,
     allDate: [],
@@ -380,7 +380,23 @@
         if (!['disabled', 'hidden'].includes(obj.status)) {
 
             if (this.getIsReserved(obj.value)) {
-                alert('این روز رزرو شده است');
+                if (!this.startDate) {
+                    alert('این روز رزرو شده است');
+
+                } else {
+                    this.endDate = moment(obj.valueEn).format('YYYY-MM-DD')
+                    for (let i = this.getItemIndex(this.startDate); i <= this.getItemIndex(this
+                            .endDate); i++) {
+                        if (!this.getIsReserved(this.calenderData[i].value)) {
+                            if (this.calenderData[i].status !== 'hidden') {
+                                this.allDate.push(this.calenderData[i].valueEn)
+                            }
+                        } else {
+                            this.endDate = moment(this.calenderData[i].valueEn).format('YYYY-MM-DD')
+                            break
+                        }
+                    }
+                }
             } else {
                 if (this.startDate === null) {
                     this.startDate = moment(obj.valueEn).format('YYYY-MM-DD');
@@ -425,7 +441,6 @@
 }">
 
     <div class="calender">
-
         <div class="body-calender">
             <div class="month">
                 <div class="month-header">

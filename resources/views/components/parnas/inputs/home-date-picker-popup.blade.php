@@ -383,7 +383,23 @@
         if (!['disabled', 'hidden'].includes(obj.status)) {
 
             if (this.getIsReserved(obj.value)) {
-                alert('این روز رزرو شده است');
+                if (!this.startDate) {
+                    alert('این روز رزرو شده است');
+
+                } else {
+                    this.endDate = moment(obj.valueEn).format('YYYY-MM-DD')
+                    for (let i = this.getItemIndex(this.startDate); i <= this.getItemIndex(this
+                            .endDate); i++) {
+                        if (!this.getIsReserved(this.calenderData[i].value)) {
+                            if (this.calenderData[i].status !== 'hidden') {
+                                this.allDate.push(this.calenderData[i].valueEn)
+                            }
+                        } else {
+                            this.endDate = moment(this.calenderData[i].valueEn).format('YYYY-MM-DD')
+                            break
+                        }
+                    }
+                }
             } else {
                 if (this.startDate === null) {
                     this.startDate = moment(obj.valueEn).format('YYYY-MM-DD');

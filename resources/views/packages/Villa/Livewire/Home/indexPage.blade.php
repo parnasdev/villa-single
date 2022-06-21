@@ -484,6 +484,5 @@
 </div>
 @push('scripts')
 <script>
-    console.log(window.innerWidth);
 </script>
 @endpush
