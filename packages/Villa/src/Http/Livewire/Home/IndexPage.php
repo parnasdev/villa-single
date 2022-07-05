@@ -23,7 +23,7 @@ class IndexPage extends Component
     public array $datesSelected = [];
     public $additionalCount = 0;
     public $residence;
-    protected $listeners = ['selectedDate', 'removeDateSelection'];
+    protected $listeners = ['selectedDate', 'removeDateSelection','render'];
 
 
     public function mount()

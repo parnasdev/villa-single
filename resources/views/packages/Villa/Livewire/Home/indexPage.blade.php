@@ -126,7 +126,7 @@
                             </p>
                         </div>
                     </div>
-                
+
                     <div class="box-data px-3 py-4 mb-4">
                         <div class="title d-flex align-items-center">
                             <svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -170,7 +170,8 @@
                                                 transform="translate(0 0.561)" fill="#347557" fill-rule="evenodd" />
                                             <path id="Path_1045" data-name="Path 1045"
                                                 d="M6.312,17a1.312,1.312,0,0,0,0,2.624H7.624a1.312,1.312,0,0,0,0-2.624Zm5.249,0a1.312,1.312,0,1,0,0,2.624h10.5a1.312,1.312,0,0,0,0-2.624Z"
-                                                transform="translate(1.561 3.995)" fill="#347557" fill-rule="evenodd" />
+                                                transform="translate(1.561 3.995)" fill="#347557"
+                                                fill-rule="evenodd" />
                                         </g>
                                     </svg>
                                     <span
@@ -376,8 +377,7 @@
                         </div>
                         <div class="line-horizontal"></div>
                         <div class="multiple-calender">
-                            <x-parnas.inputs.home-date-picker :data="$this->calendarRequest"
-                                model1="dayIn" model2="dayOut"
+                            <x-parnas.inputs.home-date-picker :data="$this->calendarRequest" model1="dayIn" model2="dayOut"
                                 minDate="{{ jdate()->format('Y/m/d') }}" />
                         </div>
                     </div>
@@ -385,9 +385,8 @@
                 {{-- // calender location --}}
                 <div class="l-data box-data px-2 pt-2 pb-5">
                     <div class="multiple-calender-popup">
-                    <x-parnas.inputs.home-date-picker-popup :data="$this->calendarRequest"
-                        model1="dayIn" model2="dayOut"
-                        minDate="{{ jdate()->format('Y/m/d') }}" />
+                        <x-parnas.inputs.home-date-picker-popup :data="$this->calendarRequest" model1="dayIn" model2="dayOut"
+                            minDate="{{ jdate()->format('Y/m/d') }}" />
                     </div>
                     <div class="box-data">
                         <div class="day-selected">
@@ -397,16 +396,38 @@
                             <div @click="coll=!coll" class="price-day selected-day-list">
                                 <span>{{ count($datesSelected) . 'شب' }}</span>
 
+                               
+
+
+                                <template x-if="!this.col">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24"
+                                    width="30" height="30">
+                                    <path
+                                        d="M18.71,8.21a1,1,0,0,0-1.42,0l-4.58,4.58a1,1,0,0,1-1.42,0L6.71,8.21a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.59,4.59a3,3,0,0,0,4.24,0l4.59-4.59A1,1,0,0,0,18.71,8.21Z" />
+                                </svg>
+                                </template>
+                               
+                                <template x-if="this.col">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24"
+                                    width="30" height="30">
+                                    <path
+                                        d="M18,15.5a1,1,0,0,1-.71-.29l-4.58-4.59a1,1,0,0,0-1.42,0L6.71,15.21a1,1,0,0,1-1.42-1.42L9.88,9.21a3.06,3.06,0,0,1,4.24,0l4.59,4.58a1,1,0,0,1,0,1.42A1,1,0,0,1,18,15.5Z" />
+                                </svg>
+                                </template>
+
                                 <strong>{{ number_format($this->getTotalPrice()) }}</strong>
+
+
                             </div>
                             <div style="display: none" x-show="coll">
+
                                 @foreach ($datesSelected as $dateItem)
                                     <div class="price-day selected-day-list">
                                         <span>{{ jdate($dateItem)->format('Y-m-d') }}</span>
                                         @if ($loop->index === count($datesSelected) - 1)
                                             <strong class="span-price-day">روز خروج</strong>
                                         @else
-                                            <strong>{{ number_format($this->getPrice($dateItem)->first()->price) }}</strong>
+                                            <strong>{{ number_format($this->getPrice($dateItem)[count($this->getPrice($dateItem))-1]->price) }}</strong>
                                         @endif
                                     </div>
                                 @endforeach
@@ -424,17 +445,21 @@
                             <strong>{{ number_format($this->getTotalPrice()) }}</strong>
                         </div>
                         @auth
-                        <button class="btn-reserve" @click.prevent="$dispatch('open-modal' , {name: 'reserve'})">
-                            ادامه
-                        </button>
+                            <button class="btn-reserve" @click.prevent="$dispatch('open-modal' , {name: 'reserve'})">
+                                ادامه
+                            </button>
                         @endauth
-                  @guest
-                  <button class="btn-reserve" wire:click="checkAuth">
-                    ورود و ادامه
-                </button>
-                  @endguest
+                        @guest
+                            <button class="btn-reserve"  @click.prevent="$dispatch('open-modal' , {name: 'auth'})">
+                                ورود و ادامه
+                            </button>
+                        @endguest
                     </div>
                 </div>
+                <x-parnas.home-modal name="auth">
+                    <livewire:home.auth.authenticate-popup></livewire:home.auth.authentica-popup>
+                </x-parnas.home-modal>
+
                 <x-parnas.home-modal name="reserve">
                     <form wire:submit.prevent="submit" class="w-100 d-flex parent-form-info-villa">
                         <div class="form-group">
@@ -483,6 +508,5 @@
     </section>
 </div>
 @push('scripts')
-<script>
-</script>
+    <script></script>
 @endpush

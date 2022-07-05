@@ -442,14 +442,14 @@
     },
 
 }">
-    <div class="item-date" @click="show=!show">
+    <button class="btn-success rounded-3 py-2" @click="show=!show">
         <label for="">تاریخ ورود</label>
-        <span x-text="displayDate1"></span>
-    </div>
-    <div class="item-date" @click="show=!show">
-        <label for="">تاریخ ورود</label>
-        <span x-text="displayDate2"></span>
-    </div>
+        <span class="ps-2" x-text="displayDate1"></span>
+    </button>
+    <button class="btn-success rounded-3 py-2" @click="show=!show">
+        <label for="">تاریخ خروج</label>
+        <span class="ps-2" x-text="displayDate2"></span>
+    </button>
     <div style="display: none" x-transition:enter="animated fadeInDown" x-transition:leave="animated fadeOutUp"
         x-show="show" class="calender" @click.outside="show = false">
         <div class="header-calender">

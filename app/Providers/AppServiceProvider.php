@@ -3,12 +3,6 @@
 namespace App\Providers;
 
 use App\Console\Commands\InstallCMS;
-use App\Models\Setting;
-use App\Repository\Admin\Blog\BlogInterface;
-use App\Repository\Admin\Blog\BlogService;
-use App\Repository\Admin\Category\CategoryInterface;
-use App\Repository\Admin\Category\CategoryService;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
